@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visit Team Quick Start Guide - Marquette Gen Z Strategy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #003865 0%, #005CA9 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #FFBB00;
+        }
+        
+        .logo {
+            display: inline-block;
+            background: #FFBB00;
+            color: #003865;
+            padding: 10px 25px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-family: Georgia, serif;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        h1 {
+            color: #003865;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        .quick-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .info-item {
+            text-align: center;
+        }
+        
+        .info-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #003865;
+            display: block;
+        }
+        
+        .info-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            font-size: 20px;
+            color: #003865;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 4px solid #FFBB00;
+        }
+        
+        .checklist {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #003865;
+            border-radius: 4px;
+            margin-right: 15px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .checklist-content {
+            flex: 1;
+        }
+        
+        .checklist-title {
+            font-weight: bold;
+            color: #003865;
+            margin-bottom: 5px;
+        }
+        
+        .checklist-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .implementation-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .timeline-phase {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-phase:hover {
+            border-color: #FFBB00;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .phase-number {
+            background: #003865;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .phase-title {
+            font-weight: bold;
+            color: #003865;
+            margin-bottom: 5px;
+        }
+        
+        .phase-duration {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .integration-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .integration-card h4 {
+            color: #003865;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .integration-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .integration-card li {
+            padding: 5px 0;
+            font-size: 14px;
+            color: #666;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .integration-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #FFBB00;
+            font-weight: bold;
+        }
+        
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .warning-box h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .warning-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .warning-box li {
+            padding: 5px 0;
+            font-size: 14px;
+            color: #856404;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #FFBB00 0%, #FFC933 100%);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .cta-title {
+            font-size: 24px;
+            color: #003865;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-btn {
+            background: #003865;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-btn:hover {
+            background: #005CA9;
+            transform: translateY(-2px);
+        }
+        
+        .cta-btn.secondary {
+            background: white;
+            color: #003865;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .contact-item {
+            text-align: center;
+        }
+        
+        .contact-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-value {
+            font-size: 16px;
+            color: #003865;
+            font-weight: bold;
+        }
+        
+        .contact-value a {
+            color: #003865;
+            text-decoration: none;
+        }
+        
+        .contact-value a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .integration-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">MARQUETTE UNIVERSITY</div>
+            <h1>Visit Team Quick Start Guide</h1>
+            <p class="subtitle">Gen Z Engagement Strategy Implementation</p>
+        </div>
+        
+        <div class="quick-info">
+            <div class="info-item">
+                <span class="info-value">2 Hours</span>
+                <span class="info-label">Setup Time</span>
+            </div>
+            <div class="info-item">
+                <span class="info-value">500</span>
+                <span class="info-label">Pilot Size</span>
+            </div>
+            <div class="info-item">
+                <span class="info-value">30 Days</span>
+                <span class="info-label">First Results</span>
+            </div>
+            <div class="info-item">
+                <span class="info-value">$0</span>
+                <span class="info-label">Additional Cost</span>
+            </div>
+        </div>
+        
+        <!-- What This Is -->
+        <div class="section">
+            <h2 class="section-title">What This Strategy Includes</h2>
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <h4>🎮 Interactive Components</h4>
+                    <ul>
+                        <li>Milwaukee Vibe Check Quiz (2-3 min)</li>
+                        <li>Adventure Finder Quiz (4-5 min)</li>
+                        <li>Personality-matched results</li>
+                        <li>Social sharing mechanics</li>
+                    </ul>
+                </div>
+                <div class="integration-card">
+                    <h4>📧 Email Templates</h4>
+                    <ul>
+                        <li>Casual tone version (Gen Z friendly)</li>
+                        <li>Formal tone version (traditional)</li>
+                        <li>Community-focused "Find Your Crew"</li>
+                        <li>A/B testing ready</li>
+                    </ul>
+                </div>
+                <div class="integration-card">
+                    <h4>📊 Measurement Framework</h4>
+                    <ul>
+                        <li>UTM tracking parameters</li>
+                        <li>Conversion funnel metrics</li>
+                        <li>Personality → visit correlation</li>
+                        <li>ROI calculator built-in</li>
+                    </ul>
+                </div>
+                <div class="integration-card">
+                    <h4>🎯 Visit Team Benefits</h4>
+                    <ul>
+                        <li>Pre-qualify visitors by interest</li>
+                        <li>Personalized tour recommendations</li>
+                        <li>Data on what drives visits</li>
+                        <li>Follow-up segmentation ready</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Implementation Checklist -->
+        <div class="section">
+            <h2 class="section-title">Pre-Launch Checklist</h2>
+            <div class="checklist">
+                <div class="checklist-item">
+                    <div class="check-box"></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Review Both Email Versions</div>
+                        <div class="checklist-desc">Choose which tone to test first or run A/B test with both</div>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-box"></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Set Up Tracking in Your Email Platform</div>
+                        <div class="checklist-desc">Add UTM parameters: ?utm_source=email&utm_campaign=gen_z_pilot</div>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-box"></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Upload Quiz Files to Web Server</div>
+                        <div class="checklist-desc">quiz.html and adventure-quiz.html - self-contained, no dependencies</div>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-box"></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Brief Student Ambassadors</div>
+                        <div class="checklist-desc">They should know about quiz results when giving tours</div>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-box"></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Create Segment of 500 Test Recipients</div>
+                        <div class="checklist-desc">Admitted students with campus visits scheduled</div>
+                    </div>
+                </div>
+                <div class="checklist-item">
+                    <div class="check-box"></div>
+                    <div class="checklist-content">
+                        <div class="checklist-title">Test Quiz on Mobile Devices</div>
+                        <div class="checklist-desc">67% of Gen Z will access on phones</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4-Week Timeline -->
+        <div class="section">
+            <h2 class="section-title">4-Week Pilot Timeline</h2>
+            <div class="implementation-timeline">
+                <div class="timeline-phase">
+                    <div class="phase-number">1</div>
+                    <div class="phase-title">Week 1: Launch</div>
+                    <div class="phase-duration">Send to 500 students</div>
+                </div>
+                <div class="timeline-phase">
+                    <div class="phase-number">2</div>
+                    <div class="phase-title">Week 2: Monitor</div>
+                    <div class="phase-duration">Track engagement daily</div>
+                </div>
+                <div class="timeline-phase">
+                    <div class="phase-number">3</div>
+                    <div class="phase-title">Week 3: Optimize</div>
+                    <div class="phase-duration">Adjust based on data</div>
+                </div>
+                <div class="timeline-phase">
+                    <div class="phase-number">4</div>
+                    <div class="phase-title">Week 4: Report</div>
+                    <div class="phase-duration">Analyze visit correlation</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- How It Complements Current Strategy -->
+        <div class="section">
+            <h2 class="section-title">Integration with Current Visit Programs</h2>
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <h4>✅ Enhances (Not Replaces)</h4>
+                    <ul>
+                        <li>Adds to existing email campaigns</li>
+                        <li>Complements traditional outreach</li>
+                        <li>Works with current CRM (Slate)</li>
+                        <li>Uses existing visit scheduling</li>
+                    </ul>
+                </div>
+                <div class="integration-card">
+                    <h4>🎯 Pre-Visit Engagement</h4>
+                    <ul>
+                        <li>Warms up cold prospects</li>
+                        <li>Creates excitement before visit</li>
+                        <li>Personalizes tour expectations</li>
+                        <li>Increases show rates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Common Concerns -->
+        <div class="warning-box">
+            <h4>⚠️ Common Concerns Addressed</h4>
+            <ul>
+                <li><strong>Too casual?</strong> We have a formal version ready for testing</li>
+                <li><strong>Technical issues?</strong> Self-contained HTML, works on any server</li>
+                <li><strong>Time investment?</strong> 2-3 hours total setup, then runs itself</li>
+                <li><strong>Risk?</strong> Start with just 500 students, expand if successful</li>
+                <li><strong>Measurement?</strong> All tracking built-in, integrates with current analytics</li>
+            </ul>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="section">
+            <h2 class="section-title">Quick Reference Contacts</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-label">Main Office</div>
+                    <div class="contact-value">(414) 288-7302</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:admissions@marquette.edu">admissions@marquette.edu</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-label">Visit Portal</div>
+                    <div class="contact-value">
+                        <a href="https://admissions.marquette.edu/portal/daily-visits">Schedule Visits</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2 class="cta-title">Ready to Launch the Pilot?</h2>
+            <p style="color: #003865; margin: 10px 0;">Everything is built and ready. Just need your green light.</p>
+            <div class="cta-buttons">
+                <a href="/quiz?name=TestStudent" class="cta-btn">Test Quiz Now</a>
+                <a href="/results" class="cta-btn secondary">View Full Plan</a>
+                <a href="mailto:admissions@marquette.edu?subject=Visit Team Gen Z Pilot Launch" class="cta-btn">Start Pilot</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
