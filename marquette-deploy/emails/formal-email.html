@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Your Marquette University Experience - Formal Version</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-banner {
+            background: linear-gradient(135deg, #003865 0%, #005CA9 100%);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: white;
+            font-size: 26px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .tagline {
+            color: #FFCC00;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .subject-preview {
+            background: #003865;
+            color: white;
+            padding: 15px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .email-body {
+            padding: 30px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            color: #003865;
+            margin-bottom: 20px;
+        }
+        
+        .content-block {
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #003865;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #003865;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .cta-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 25px 0;
+            border: 2px solid #003865;
+        }
+        
+        .cta-title {
+            color: #003865;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .cta-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .cta-button {
+            background: #003865;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 56, 101, 0.3);
+        }
+        
+        .cta-button:hover {
+            background: #005CA9;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 56, 101, 0.4);
+        }
+        
+        .secondary-cta {
+            background: #FFBB00;
+            color: #003865;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .secondary-cta:hover {
+            background: #FFC933;
+            transform: translateY(-2px);
+        }
+        
+        .secondary-options {
+            margin-top: 20px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .option-link {
+            color: #003865;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            margin: 0 10px;
+            padding: 8px 15px;
+            display: inline-block;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .option-link:hover {
+            border-color: #003865;
+            background: #f8f9fa;
+        }
+        
+        .benefits-list {
+            margin: 20px 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .benefit-item {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .benefit-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #003865;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .signature {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .signature-name {
+            font-weight: 600;
+            color: #003865;
+        }
+        
+        .signature-title {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .signature-contact {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .footer-note {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+        }
+        
+        .comparison-note {
+            background: #e8f4ff;
+            border: 1px solid #b8daff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+        
+        .comparison-note strong {
+            color: #003865;
+            display: block;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header-banner">
+            <div class="logo">MARQUETTE UNIVERSITY</div>
+            <div class="tagline">Be The Difference</div>
+        </div>
+        
+        <!-- Subject Line Preview -->
+        <div class="subject-preview">
+            Discover Your Personalized Marquette Experience
+        </div>
+        
+        <!-- A/B Test Note -->
+        <div class="comparison-note">
+            <strong>📊 A/B Testing Note for Admissions Team:</strong>
+            This is the formal tone version for comparison against the casual version. Both maintain Marquette's brand integrity while testing different communication styles. Track open rates, CTR, and quiz completion to determine optimal tone for your audience.
+        </div>
+        
+        <!-- Email Body -->
+        <div class="email-body">
+            <div class="greeting">Dear [Name],</div>
+            
+            <div class="content-block">
+                Thank you for your interest in Marquette University. As you consider your college options, we want to ensure you have a clear understanding of what makes Marquette distinctive and how our Milwaukee location enhances your educational experience.
+            </div>
+            
+            <div class="content-block">
+                <strong>Why Marquette Stands Apart:</strong>
+            </div>
+            
+            <ul class="benefits-list">
+                <li class="benefit-item">Direct access to Fortune 500 companies headquartered in Milwaukee, including Northwestern Mutual, Johnson Controls, and Kohl's Corporation</li>
+                <li class="benefit-item">96% of graduates employed or in graduate school within six months of graduation</li>
+                <li class="benefit-item">Over 250 student organizations fostering leadership and community engagement</li>
+                <li class="benefit-item">Big East Conference athletics providing Division I competitive excellence</li>
+                <li class="benefit-item">Jesuit educational tradition emphasizing whole-person development and service</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <strong>Milwaukee: Your Extended Campus</strong><br>
+                Our downtown location provides unparalleled opportunities for internships, cultural experiences, and professional networking. From the Historic Third Ward's innovation district to the Milwaukee Art Museum's world-class collections, the city becomes an integral part of your Marquette education.
+            </div>
+            
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">11:1</span>
+                    <span class="stat-label">Student-Faculty Ratio</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">$170M+</span>
+                    <span class="stat-label">Annual Financial Aid</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">83</span>
+                    <span class="stat-label">Undergraduate Majors</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">Top 100</span>
+                    <span class="stat-label">National University</span>
+                </div>
+            </div>
+            
+            <!-- Main CTA -->
+            <div class="cta-section">
+                <div class="cta-title">Explore Your Marquette Fit</div>
+                <div class="cta-subtitle">Take our brief assessment to discover how your interests align with Marquette's opportunities</div>
+                <a href="https://marquette.edu/vibe-check" class="cta-button">Begin Assessment</a>
+                <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                    2-minute interactive experience • No registration required
+                </div>
+            </div>
+            
+            <div class="content-block">
+                <strong>Your Next Steps:</strong><br>
+                We encourage you to explore Marquette through multiple channels to make an informed decision about your college choice. Our admissions team is available to answer questions and provide personalized guidance throughout your decision-making process.
+            </div>
+            
+            <!-- Secondary Options -->
+            <div class="secondary-options">
+                <a href="https://admissions.marquette.edu/portal/daily-visits" class="secondary-cta">Schedule Campus Visit</a>
+                <a href="https://marquette.edu/virtual-tour" class="secondary-cta">Virtual Tour</a>
+                <div style="margin-top: 15px;">
+                    <a href="https://admissions.marquette.edu/register/inquiry" class="option-link">Request Information</a>
+                    <a href="tel:+14142887700" class="option-link">Call Admissions</a>
+                    <a href="https://marquette.edu/apply" class="option-link">Apply Now</a>
+                </div>
+            </div>
+            
+            <!-- Financial Aid Note -->
+            <div class="highlight-box" style="background: #fff9e6; border-color: #FFBB00;">
+                <strong>Financial Aid Information:</strong><br>
+                Marquette distributed over $170 million in financial aid last year, with the average aid package exceeding $30,000. We encourage all prospective students to explore financial aid options regardless of family income. Our Financial Aid Office is available to discuss your specific situation and help make Marquette affordable for your family.
+            </div>
+            
+            <!-- Signature -->
+            <div class="signature">
+                <div class="signature-name">Marquette Admissions Team</div>
+                <div class="signature-title">Office of Undergraduate Admissions</div>
+                <div class="signature-title" style="margin-top: 5px; font-style: italic;">Marquette University</div>
+                <div class="signature-contact">
+                    Phone: (414) 288-7302 | Email: admissions@marquette.edu<br>
+                    Office Hours: Monday-Friday, 8:00 AM - 4:30 PM CST<br>
+                    Visit Scheduling: <a href="https://admissions.marquette.edu/portal/daily-visits" style="color: #003865;">admissions.marquette.edu/portal/daily-visits</a>
+                </div>
+            </div>
+            
+            <!-- Footer Note -->
+            <div class="footer-note">
+                <strong>Visit us at marquette.edu</strong><br>
+                Marquette University | 1250 W. Wisconsin Avenue | Milwaukee, WI 53233<br>
+                <br>
+                <div style="font-size: 11px; color: #999;">
+                    Built with WCAG 2.1 AA compliance for inclusive access.<br>
+                    FERPA compliant - No personal data collected without explicit consent.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

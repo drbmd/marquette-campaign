@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Milwaukee Adventure Style 🗺️ | Marquette University</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #003865 0%, #005CA9 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .quiz-container {
+            background: white;
+            border-radius: 20px;
+            max-width: 520px;
+            width: 100%;
+            padding: 35px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color: #003865;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: #FFBB00;
+            padding: 8px 18px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-bottom: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(255, 187, 0, 0.3);
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 187, 0, 0.4);
+        }
+        
+        .quiz-title {
+            font-size: 26px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #003865 0%, #005CA9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        
+        .quiz-subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+        
+        .adventure-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFBB00 0%, #FFC933 100%);
+            color: #003865;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .progress-container {
+            margin-bottom: 25px;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FFBB00, #FFC933);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            width: 20%;
+        }
+        
+        .progress-text {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .question-container {
+            display: none;
+        }
+        
+        .question-container.active {
+            display: block;
+            animation: slideIn 0.4s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .question-text {
+            font-size: 20px;
+            font-weight: 600;
+            color: #003865;
+            margin-bottom: 25px;
+            line-height: 1.4;
+            text-align: center;
+        }
+        
+        .adventure-options {
+            display: grid;
+            gap: 15px;
+        }
+        
+        .adventure-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .adventure-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 187, 0, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+        
+        .adventure-card:hover {
+            border-color: #FFBB00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 187, 0, 0.3);
+        }
+        
+        .adventure-card:hover::after {
+            animation: shine 0.6s ease;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateY(-100%); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: rotate(45deg) translateY(100%); opacity: 0; }
+        }
+        
+        .adventure-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .adventure-icon {
+            font-size: 28px;
+            margin-right: 12px;
+        }
+        
+        .adventure-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #003865;
+        }
+        
+        .adventure-desc {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-left: 40px;
+        }
+        
+        .location-tag {
+            display: inline-block;
+            background: rgba(0, 56, 101, 0.1);
+            color: #003865;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-top: 6px;
+            font-weight: 600;
+        }
+        
+        .result-container {
+            display: none;
+            text-align: center;
+        }
+        
+        .result-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .result-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFBB00 0%, #FFC933 100%);
+            color: #003865;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 187, 0, 0.3);
+        }
+        
+        .result-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #003865;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .result-title span {
+            font-size: 36px;
+            display: inline-block;
+            animation: gentle-bounce 3s infinite;
+        }
+        
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        
+        .result-description {
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 18px;
+            font-size: 16px;
+        }
+        
+        .adventure-details {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 18px;
+            border: 2px solid #FFBB00;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .detail-item {
+            text-align: left;
+        }
+        
+        .detail-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: #003865;
+            font-size: 14px;
+        }
+        
+        .spot-list {
+            text-align: left;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .spot-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+        
+        .spot-list .spot-item:last-child:nth-child(odd) {
+            grid-column: 1 / -1;
+            max-width: 50%;
+            margin: 0 auto;
+        }
+        
+        .section-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #003865 0%, #005CA9 100%);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(0, 56, 101, 0.3);
+        }
+        
+        .spot-list-title {
+            font-weight: 600;
+            color: #003865;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .spot-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .spot-item:hover {
+            background: white;
+            border-color: #FFBB00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 187, 0, 0.2);
+        }
+        
+        .spot-emoji {
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        
+        .spot-info {
+            flex: 1;
+        }
+        
+        .spot-name {
+            font-weight: 600;
+            font-size: 13px;
+            color: #333;
+        }
+        
+        .spot-desc {
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 18px 0;
+        }
+        
+        .action-btn {
+            padding: 12px 24px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .action-btn.primary {
+            background: linear-gradient(135deg, #FFBB00 0%, #FFC933 100%);
+            color: #003865;
+            box-shadow: 0 4px 15px rgba(255, 187, 0, 0.3);
+        }
+        
+        .action-btn.secondary {
+            background: #003865;
+            color: white;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 56, 101, 0.3);
+        }
+        
+        .share-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        
+        .share-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #003865;
+            margin-bottom: 12px;
+        }
+        
+        .share-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        
+        .share-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .share-btn.instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+        
+        .share-btn.instagram:hover {
+            box-shadow: 0 4px 12px rgba(225, 48, 108, 0.4);
+        }
+        
+        .share-btn.tiktok {
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .share-btn.tiktok::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00f2ea, #ff0050);
+            z-index: -1;
+            border-radius: 8px;
+        }
+        
+        .share-btn.tiktok:hover {
+            box-shadow: 0 4px 12px rgba(255, 0, 80, 0.4);
+        }
+        
+        .share-btn.twitter {
+            background: #1DA1F2;
+        }
+        
+        .share-btn.twitter:hover {
+            background: #1a91da;
+            box-shadow: 0 4px 12px rgba(29, 161, 242, 0.4);
+        }
+        
+        .share-btn.copy {
+            background: #003865;
+        }
+        
+        .share-btn.copy:hover {
+            background: #002d52;
+            box-shadow: 0 4px 12px rgba(0, 56, 101, 0.4);
+        }
+        
+        .explore-others {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 2px solid #e0e0e0;
+        }
+        
+        .explore-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .other-adventures {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        
+        .other-card {
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .other-card:hover {
+            border-color: #FFBB00;
+            background: white;
+        }
+        
+        .other-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .other-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: #003865;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <a href="https://admissions.marquette.edu/portal/daily-visits" class="logo">Marquette University</a>
+            <h1 class="quiz-title">Find Your Milwaukee Adventure</h1>
+            <p class="quiz-subtitle">Match your vibe to Milwaukee's best spots</p>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+            <div class="progress-text" id="progressText">Question 1 of 5</div>
+        </div>
+        
+        <!-- Question 1 -->
+        <div class="question-container active" id="q1">
+            <div class="question-text">Your perfect Saturday starts at...</div>
+            <div class="adventure-options">
+                <div class="adventure-card" onclick="nextQuestion(2, 'morning')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🌅</span>
+                        <span class="adventure-title">6am sunrise</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Bradford Beach run, nobody around yet
+                        <br><span class="location-tag">Lakefront Trail</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(2, 'brunch')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🥞</span>
+                        <span class="adventure-title">11am brunch vibes</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Blue's Egg with the whole crew
+                        <br><span class="location-tag">Wauwatosa</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(2, 'afternoon')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">☕</span>
+                        <span class="adventure-title">2pm coffee shop</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Laptop + latte at Colectivo
+                        <br><span class="location-tag">Third Ward</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(2, 'night')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🌙</span>
+                        <span class="adventure-title">Night owl studying</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Raynor Library until late
+                        <br><span class="location-tag">Campus</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Question 2 -->
+        <div class="question-container" id="q2">
+            <div class="question-text">Milwaukee bucket list priority?</div>
+            <div class="adventure-options">
+                <div class="adventure-card" onclick="nextQuestion(3, 'sports')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🏀</span>
+                        <span class="adventure-title">Bucks championship parade energy</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Fiserv Forum student section goes crazy
+                        <br><span class="location-tag">Downtown</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(3, 'culture')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🎨</span>
+                        <span class="adventure-title">Gallery Night takeover</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Free art, local artists, rooftop views
+                        <br><span class="location-tag">Third Ward</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(3, 'nature')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🚴</span>
+                        <span class="adventure-title">Bike the entire Oak Leaf Trail</span>
+                    </div>
+                    <div class="adventure-desc">
+                        100+ miles of lakefront & urban trails
+                        <br><span class="location-tag">All Milwaukee</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(3, 'food')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🍕</span>
+                        <span class="adventure-title">Eat at every Public Market vendor</span>
+                    </div>
+                    <div class="adventure-desc">
+                        20+ local food spots, one mission
+                        <br><span class="location-tag">Third Ward</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Question 3 -->
+        <div class="question-container" id="q3">
+            <div class="question-text">Study session that actually works?</div>
+            <div class="adventure-options">
+                <div class="adventure-card" onclick="nextQuestion(4, 'group')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">👥</span>
+                        <span class="adventure-title">Squad takeover at Fuel</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Caffeine + collaboration = productivity
+                        <br><span class="location-tag">5th Street</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(4, 'solo')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🎧</span>
+                        <span class="adventure-title">Hidden library corner</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Raynor 3rd floor, nobody knows this spot
+                        <br><span class="location-tag">Campus</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(4, 'active')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🏃</span>
+                        <span class="adventure-title">Treadmill + flashcards</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Movement = memory (trust the science)
+                        <br><span class="location-tag">The Rec</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(4, 'creative')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🎨</span>
+                        <span class="adventure-title">Milwaukee Art Museum vibes</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Architecture that makes you think better
+                        <br><span class="location-tag">Lakefront</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class="question-container" id="q4">
+            <div class="question-text">Your Milwaukee winter move?</div>
+            <div class="adventure-options">
+                <div class="adventure-card" onclick="nextQuestion(5, 'embrace')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">⛸️</span>
+                        <span class="adventure-title">Ice skating at Red Arrow Park</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Hot chocolate + city lights = winter magic
+                        <br><span class="location-tag">Downtown</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(5, 'hibernate')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🔥</span>
+                        <span class="adventure-title">Coffee shop fireplace tour</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Cozy cafes with fireplaces all weekend
+                        <br><span class="location-tag">Bay View & Riverwest</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(5, 'escape')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🏛️</span>
+                        <span class="adventure-title">Museum hop (free warmth)</span>
+                    </div>
+                    <div class="adventure-desc">
+                        MAM, Public Museum, Discovery World circuit
+                        <br><span class="location-tag">Various</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="nextQuestion(5, 'grind')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">💼</span>
+                        <span class="adventure-title">Internship hustle season</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Northwestern Mutual HQ is heated 24/7
+                        <br><span class="location-tag">Downtown</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Question 5 -->
+        <div class="question-container" id="q5">
+            <div class="question-text">Your crew needs a late-night move. You picking?</div>
+            <div class="adventure-options">
+                <div class="adventure-card" onclick="showResult('nightowl')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">☕</span>
+                        <span class="adventure-title">Stone Creek Coffee run</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Perfect for late-night study fuel
+                        <br><span class="location-tag">Multiple Locations</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="showResult('explorer')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🌃</span>
+                        <span class="adventure-title">Rooftop photography mission</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Milwaukee skyline from secret spots
+                        <br><span class="location-tag">Various</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="showResult('hustler')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">💡</span>
+                        <span class="adventure-title">707 Hub all-nighter</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Startup ideas don't have bedtimes
+                        <br><span class="location-tag">Innovation Alley</span>
+                    </div>
+                </div>
+                <div class="adventure-card" onclick="showResult('curator')">
+                    <div class="adventure-header">
+                        <span class="adventure-icon">🎵</span>
+                        <span class="adventure-title">Underground show at Cactus Club</span>
+                    </div>
+                    <div class="adventure-desc">
+                        Milwaukee's indie music scene goes hard
+                        <br><span class="location-tag">Bay View</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Results -->
+        <div class="result-container" id="result">
+            <h2 class="result-title" id="resultTitle"><span id="resultIcon">🌙</span> You're a Night Owl Explorer!</h2>
+            <p class="result-description" id="resultDesc">
+                Milwaukee after dark is your classroom. While others sleep, you're discovering hidden study spots, 
+                finding the best late-night coffee, and turning every evening library session into an adventure. You know 
+                that the best Milwaukee stories happen after sunset - from surprise concerts at The Rave to watching the 
+                sunrise from the lakefront after an all-night study session.
+            </p>
+            
+            <div class="adventure-details">
+                <div style="text-align: center;">
+                    <span class="section-badge">Milwaukee Adventure Map</span>
+                </div>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">Squad</div>
+                        <div class="detail-value" id="squadMatch">Late Night Scholars</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Major Vibe</div>
+                        <div class="detail-value" id="majorMatch">Journalism or Film</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Hangout</div>
+                        <div class="detail-value" id="hangoutMatch">Stone Creek Coffee</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">Season</div>
+                        <div class="detail-value" id="seasonMatch">Summer nights</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 18px;">
+                    <span class="section-badge">Must-Hit Milwaukee Spots</span>
+                </div>
+                <div class="spot-list" id="spotsList">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="action-btn primary" onclick="shareResults()">Share Your Adventure Style 🚀</button>
+                <a href="https://admissions.marquette.edu/portal/daily-visits" class="action-btn secondary">Visit Campus IRL</a>
+            </div>
+            
+            <div class="share-section">
+                <div class="share-title">Share your adventure:</div>
+                <div class="share-grid">
+                    <button class="share-btn instagram" onclick="shareInstagram()">
+                        Instagram
+                    </button>
+                    <button class="share-btn tiktok" onclick="shareTikTok()">
+                        TikTok
+                    </button>
+                    <button class="share-btn twitter" onclick="shareTwitter()">
+                        X (Twitter)
+                    </button>
+                    <button class="share-btn copy" onclick="copyLink()">
+                        Copy Link
+                    </button>
+                </div>
+            </div>
+            
+            <div class="explore-others">
+                <div class="explore-title">Other Milwaukee Adventures</div>
+                <div class="other-adventures" id="otherAdventures">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Quiz state
+        let currentQuestion = 1;
+        let answers = [];
+        let currentResult = '';
+        
+        // Adventure style results
+        const results = {
+            nightowl: {
+                icon: "🌙",
+                title: "Night Owl Explorer",
+                desc: "Milwaukee after dark is your classroom. While others sleep, you're discovering hidden study spots, finding the best late-night coffee, and turning every evening library session into an adventure. You know that the best Milwaukee stories happen after sunset - from surprise concerts at The Rave to watching the sunrise from the lakefront after an all-night study session.",
+                squad: "Late Night Scholars",
+                major: "Journalism or Digital Media",
+                hangout: "Stone Creek Coffee",
+                season: "Summer nights by the lake",
+                spots: [
+                    { emoji: "📚", name: "Raynor Library", desc: "24/7 during finals week" },
+                    { emoji: "🎵", name: "The Rave/Eagles Club", desc: "Historic venue, legendary shows" },
+                    { emoji: "🌉", name: "Hoan Bridge", desc: "Best sunrise views in the city" },
+                    { emoji: "☕", name: "Stone Creek Coffee", desc: "Late night study sessions" }
+                ],
+                shareText: "I'm a Night Owl Explorer at Marquette! Milwaukee after dark is my classroom 🌙✨"
+            },
+            explorer: {
+                icon: "🗺️",
+                title: "Urban Adventure Seeker",
+                desc: "Every Milwaukee neighborhood is a new chapter in your story. From Brady Street vintage shops to Bay View record stores, you're building a mental map of the city's hidden gems. You'll be the friend who knows exactly where to find the best pierogi, the secret beach access points, and which coffee shop has outlets at every table. Milwaukee isn't just where you'll go to school - it's your personal adventure playground.",
+                squad: "City Scouts",
+                major: "Urban Studies or Anthropology",
+                hangout: "Milwaukee Public Market",
+                season: "Fall festival season",
+                spots: [
+                    { emoji: "🚊", name: "The Hop Streetcar", desc: "FREE rides downtown (yes, FREE!)" },
+                    { emoji: "🏖️", name: "Bradford Beach", desc: "Volleyball and sunset vibes" },
+                    { emoji: "🎨", name: "Walker's Point", desc: "Gallery nights every month" },
+                    { emoji: "🦖", name: "Milwaukee Public Museum", desc: "Natural history and planetarium" },
+                    { emoji: "🏛️", name: "Milwaukee Art Museum", desc: "Wings open at noon daily" }
+                ],
+                shareText: "I'm an Urban Adventure Seeker at Marquette! Every Milwaukee street has a story 🗺️🌆"
+            },
+            hustler: {
+                icon: "🚀",
+                title: "Startup Scene Hustler",
+                desc: "You see Milwaukee's potential before it's trending. The Third Ward isn't just trendy - it's where you'll launch your first startup at the 707 Hub. You're already planning coffee meetings at Colectivo with Northwestern Mutual executives and pitching ideas at Startup Milwaukee events. Your dorm room will have a whiteboard full of business plans, and you'll know every entrepreneur in the city by sophomore year.",
+                squad: "Future Founders Club",
+                major: "Entrepreneurship or Innovation",
+                hangout: "707 Hub (campus incubator)",
+                season: "Startup Week Milwaukee",
+                spots: [
+                    { emoji: "💼", name: "Northwestern Mutual Tower", desc: "Fortune 500 HQ, internship central" },
+                    { emoji: "🚀", name: "Ward4", desc: "Coworking space in Third Ward" },
+                    { emoji: "💡", name: "Global Water Center", desc: "Innovation hub tours" },
+                    { emoji: "💡", name: "The Commons", desc: "Student startup showcase space" }
+                ],
+                shareText: "I'm a Startup Scene Hustler at Marquette! Building the next big thing in Milwaukee 🚀💡"
+            },
+            curator: {
+                icon: "🎨",
+                title: "Culture & Vibes Curator",
+                desc: "You're here to soak up every ounce of Milwaukee's soul - from Jazz in the Park to underground DJ sets in Riverwest. Your Instagram will be fire with Third Ward murals, your weekends packed with food festivals, and you'll have a favorite barista at five different coffee shops. You don't just attend events; you discover them before they're cool. Milwaukee's creative energy matches yours perfectly.",
+                squad: "Creative Collective",
+                major: "Communications or Arts",
+                hangout: "Brady Street everything",
+                season: "Summerfest (world's largest music fest)",
+                spots: [
+                    { emoji: "🎭", name: "Pabst Theater", desc: "Historic venue, indie shows" },
+                    { emoji: "🎨", name: "MARN Gallery", desc: "Student art exhibitions" },
+                    { emoji: "☕", name: "Anodyne Coffee", desc: "Local roaster, creative hub" },
+                    { emoji: "🎵", name: "Jazz Estate", desc: "Intimate live music since 1977" }
+                ],
+                shareText: "I'm a Culture & Vibes Curator at Marquette! Milwaukee's creative scene is my classroom 🎨✨"
+            }
+        };
+        
+        function nextQuestion(next, trait) {
+            answers.push(trait);
+            document.getElementById(`q${currentQuestion}`).classList.remove('active');
+            document.getElementById(`q${next}`).classList.add('active');
+            currentQuestion = next;
+            
+            // Update progress
+            const progress = (currentQuestion / 5) * 100;
+            document.getElementById('progress').style.width = `${progress}%`;
+            document.getElementById('progressText').textContent = `Question ${currentQuestion} of 5`;
+        }
+        
+        function showResult(type) {
+            // Determine result based on final answer and previous choices
+            let resultKey = type;
+            
+            // Simple logic to determine adventure style
+            if (type === 'nightowl' || answers.includes('night')) {
+                resultKey = 'nightowl';
+            } else if (type === 'explorer' || answers.includes('nature')) {
+                resultKey = 'explorer';
+            } else if (type === 'hustler' || answers.includes('grind')) {
+                resultKey = 'hustler';
+            } else if (type === 'curator' || answers.includes('culture')) {
+                resultKey = 'curator';
+            }
+            
+            currentResult = resultKey;
+            const result = results[resultKey];
+            
+            // Update result display
+            document.getElementById('resultIcon').textContent = result.icon;
+            document.getElementById('resultTitle').innerHTML = `<span id="resultIcon">${result.icon}</span> You're a ${result.title}!`;
+            document.getElementById('resultDesc').textContent = result.desc;
+            document.getElementById('squadMatch').textContent = result.squad;
+            document.getElementById('majorMatch').textContent = result.major;
+            document.getElementById('hangoutMatch').textContent = result.hangout;
+            document.getElementById('seasonMatch').textContent = result.season;
+            
+            // Populate spots list
+            const spotsHtml = result.spots.map(spot => `
+                <div class="spot-item">
+                    <span class="spot-emoji">${spot.emoji}</span>
+                    <div class="spot-info">
+                        <div class="spot-name">${spot.name}</div>
+                        <div class="spot-desc">${spot.desc}</div>
+                    </div>
+                </div>
+            `).join('');
+            document.getElementById('spotsList').innerHTML = spotsHtml;
+            
+            // Populate other adventures
+            const othersHtml = Object.keys(results)
+                .filter(key => key !== resultKey)
+                .map(key => `
+                    <div class="other-card" onclick="switchResult('${key}')">
+                        <div class="other-icon">${results[key].icon}</div>
+                        <div class="other-name">${results[key].title.replace('Urban ', '').replace('Startup Scene ', '')}</div>
+                    </div>
+                `).join('');
+            document.getElementById('otherAdventures').innerHTML = othersHtml;
+            
+            // Show result
+            document.getElementById('q5').classList.remove('active');
+            document.getElementById('result').classList.add('active');
+            document.getElementById('progress').style.width = '100%';
+            document.getElementById('progressText').textContent = 'Adventure Found! 🎉';
+            
+            // Trigger celebration animation
+            celebrate();
+        }
+        
+        function switchResult(key) {
+            currentResult = key;
+            const result = results[key];
+            
+            // Fade out and update
+            const container = document.getElementById('result');
+            container.style.opacity = '0';
+            
+            setTimeout(() => {
+                document.getElementById('resultIcon').textContent = result.icon;
+                document.getElementById('resultTitle').innerHTML = `<span id="resultIcon">${result.icon}</span> You're a ${result.title}!`;
+                document.getElementById('resultDesc').textContent = result.desc;
+                document.getElementById('squadMatch').textContent = result.squad;
+                document.getElementById('majorMatch').textContent = result.major;
+                document.getElementById('hangoutMatch').textContent = result.hangout;
+                document.getElementById('seasonMatch').textContent = result.season;
+                
+                // Update spots
+                const spotsHtml = result.spots.map(spot => `
+                    <div class="spot-item">
+                        <span class="spot-emoji">${spot.emoji}</span>
+                        <div class="spot-info">
+                            <div class="spot-name">${spot.name}</div>
+                            <div class="spot-desc">${spot.desc}</div>
+                        </div>
+                    </div>
+                `).join('');
+                document.getElementById('spotsList').innerHTML = spotsHtml;
+                
+                // Update other adventures
+                const othersHtml = Object.keys(results)
+                    .filter(otherKey => otherKey !== key)
+                    .map(otherKey => `
+                        <div class="other-card" onclick="switchResult('${otherKey}')">
+                            <div class="other-icon">${results[otherKey].icon}</div>
+                            <div class="other-name">${results[otherKey].title.replace('Urban ', '').replace('Startup Scene ', '')}</div>
+                        </div>
+                    `).join('');
+                document.getElementById('otherAdventures').innerHTML = othersHtml;
+                
+                container.style.opacity = '1';
+            }, 300);
+        }
+        
+        function celebrate() {
+            // Create floating emojis
+            const emojis = ['🎉', '✨', '💙', '💛', '🎊', '🚀'];
+            const container = document.querySelector('.quiz-container');
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const emoji = document.createElement('div');
+                    emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    emoji.style.position = 'absolute';
+                    emoji.style.left = Math.random() * 100 + '%';
+                    emoji.style.top = '100%';
+                    emoji.style.fontSize = '24px';
+                    emoji.style.pointerEvents = 'none';
+                    emoji.style.animation = 'float-up 3s ease-out forwards';
+                    emoji.style.zIndex = '1000';
+                    
+                    container.appendChild(emoji);
+                    
+                    setTimeout(() => emoji.remove(), 3000);
+                }, i * 100);
+            }
+        }
+        
+        // Add floating animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float-up {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-500px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Share functions
+        function shareResults() {
+            const result = results[currentResult];
+            if (navigator.share) {
+                navigator.share({
+                    title: `I'm a ${result.title}!`,
+                    text: result.shareText,
+                    url: window.location.href
+                }).catch(err => console.log('Share cancelled'));
+            } else {
+                copyLink();
+            }
+        }
+        
+        function shareInstagram() {
+            const result = results[currentResult];
+            navigator.clipboard.writeText(result.shareText + '\n\nFind your Milwaukee adventure @MarquetteU');
+            alert('Caption copied! Open Instagram and paste 📸');
+        }
+        
+        function shareTikTok() {
+            const result = results[currentResult];
+            window.open('https://www.tiktok.com/upload', '_blank');
+            navigator.clipboard.writeText(result.shareText + '\n\n#MarquetteU #MilwaukeeAdventure #CollegeLife');
+            alert('Caption copied for your TikTok! 🎵');
+        }
+        
+        function shareTwitter() {
+            const result = results[currentResult];
+            const text = encodeURIComponent(result.shareText);
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        }
+        
+        function copyLink() {
+            const result = results[currentResult];
+            const text = result.shareText + '\n\nFind yours: ' + window.location.href;
+            navigator.clipboard.writeText(text);
+            alert('Link and caption copied! 🔗');
+        }
+    </script>
+</body>
+</html>
