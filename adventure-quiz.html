@@ -250,26 +250,27 @@
             box-shadow: 0 4px 15px rgba(255, 187, 0, 0.3);
         }
         
+        .result-icon-container {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+        
+        .result-icon-large {
+            font-size: 48px;
+            display: inline-block;
+            padding: 12px;
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe4b5 100%);
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(255, 187, 0, 0.2);
+        }
+        
         .result-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
             color: #003865;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        
-        .result-title span {
-            font-size: 36px;
-            display: inline-block;
-            animation: gentle-bounce 3s infinite;
-        }
-        
-        @keyframes gentle-bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+            margin-bottom: 15px;
+            line-height: 1.2;
+            text-align: center;
         }
         
         .result-description {
@@ -526,41 +527,70 @@
         .explore-title {
             font-size: 14px;
             color: #666;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 16px;
+            text-align: center;
             font-weight: 600;
+        }
+        
+        .explore-subtitle {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: -8px;
+            margin-bottom: 16px;
         }
         
         .other-adventures {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
         
         .other-card {
-            padding: 12px;
-            background: #f8f9fa;
-            border-radius: 10px;
+            padding: 14px;
+            background: white;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
-            border: 2px solid transparent;
+            border: 2px solid #e0e0e0;
+            position: relative;
+            text-align: center;
         }
         
         .other-card:hover {
             border-color: #FFBB00;
-            background: white;
+            background: linear-gradient(135deg, #fffaf0 0%, #fff5e6 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(255, 187, 0, 0.3);
         }
         
         .other-icon {
-            font-size: 24px;
-            margin-bottom: 5px;
+            font-size: 28px;
+            margin-bottom: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .other-card:hover .other-icon {
+            transform: scale(1.2) rotate(5deg);
         }
         
         .other-name {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: #003865;
+            line-height: 1.2;
+        }
+        
+        .click-indicator {
+            display: inline-block;
+            background: #FFBB00;
+            color: #003865;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 9px;
+            margin-top: 6px;
+            font-weight: 600;
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -804,11 +834,11 @@
                 <div class="adventure-card" onclick="showResult('curator')">
                     <div class="adventure-header">
                         <span class="adventure-icon">🎵</span>
-                        <span class="adventure-title">Underground show at Cactus Club</span>
+                        <span class="adventure-title">Live music at Turner Hall</span>
                     </div>
                     <div class="adventure-desc">
-                        Milwaukee's indie music scene goes hard
-                        <br><span class="location-tag">Bay View</span>
+                        Historic venue, amazing acoustics, all ages shows
+                        <br><span class="location-tag">Downtown</span>
                     </div>
                 </div>
             </div>
@@ -816,7 +846,10 @@
         
         <!-- Results -->
         <div class="result-container" id="result">
-            <h2 class="result-title" id="resultTitle"><span id="resultIcon">🌙</span> You're a Night Owl Explorer!</h2>
+            <div class="result-icon-container">
+                <span class="result-icon-large" id="resultIcon">🌙</span>
+            </div>
+            <h2 class="result-title" id="resultTitle">You're a Night Owl Explorer!</h2>
             <p class="result-description" id="resultDesc">
                 Milwaukee after dark is your classroom. While others sleep, you're discovering hidden study spots, 
                 finding the best late-night coffee, and turning every evening library session into an adventure. You know 
@@ -857,7 +890,7 @@
             
             <div class="action-buttons">
                 <button class="action-btn primary" onclick="shareResults()">Share Your Adventure Style 🚀</button>
-                <a href="https://admissions.marquette.edu/portal/daily-visits" class="action-btn secondary">Visit Campus IRL</a>
+                <a href="https://admissions.marquette.edu/portal/daily-visits" class="action-btn secondary">Schedule Your Campus Visit</a>
             </div>
             
             <div class="share-section">
@@ -879,7 +912,8 @@
             </div>
             
             <div class="explore-others">
-                <div class="explore-title">Other Milwaukee Adventures</div>
+                <div class="explore-title">🔄 Other Milwaukee Adventures</div>
+                <div class="explore-subtitle">Click to explore different adventure styles!</div>
                 <div class="other-adventures" id="otherAdventures">
                     <!-- Will be populated by JavaScript -->
                 </div>
@@ -900,7 +934,7 @@
                 title: "Night Owl Explorer",
                 desc: "Milwaukee after dark is your classroom. While others sleep, you're discovering hidden study spots, finding the best late-night coffee, and turning every evening library session into an adventure. You know that the best Milwaukee stories happen after sunset - from surprise concerts at The Rave to watching the sunrise from the lakefront after an all-night study session.",
                 squad: "Late Night Scholars",
-                major: "Journalism or Digital Media",
+                major: "Journalism or Communication",
                 hangout: "Stone Creek Coffee",
                 season: "Summer nights by the lake",
                 spots: [
@@ -916,7 +950,7 @@
                 title: "Urban Adventure Seeker",
                 desc: "Every Milwaukee neighborhood is a new chapter in your story. From Brady Street vintage shops to Bay View record stores, you're building a mental map of the city's hidden gems. You'll be the friend who knows exactly where to find the best pierogi, the secret beach access points, and which coffee shop has outlets at every table. Milwaukee isn't just where you'll go to school - it's your personal adventure playground.",
                 squad: "City Scouts",
-                major: "Urban Studies or Anthropology",
+                major: "Real Estate or Marketing",
                 hangout: "Milwaukee Public Market",
                 season: "Fall festival season",
                 spots: [
@@ -933,7 +967,7 @@
                 title: "Startup Scene Hustler",
                 desc: "You see Milwaukee's potential before it's trending. The Third Ward isn't just trendy - it's where you'll launch your first startup at the 707 Hub. You're already planning coffee meetings at Colectivo with Northwestern Mutual executives and pitching ideas at Startup Milwaukee events. Your dorm room will have a whiteboard full of business plans, and you'll know every entrepreneur in the city by sophomore year.",
                 squad: "Future Founders Club",
-                major: "Entrepreneurship or Innovation",
+                major: "Innovation & Entrepreneurship",
                 hangout: "707 Hub (campus incubator)",
                 season: "Startup Week Milwaukee",
                 spots: [
@@ -947,16 +981,16 @@
             curator: {
                 icon: "🎨",
                 title: "Culture & Vibes Curator",
-                desc: "You're here to soak up every ounce of Milwaukee's soul - from Jazz in the Park to underground DJ sets in Riverwest. Your Instagram will be fire with Third Ward murals, your weekends packed with food festivals, and you'll have a favorite barista at five different coffee shops. You don't just attend events; you discover them before they're cool. Milwaukee's creative energy matches yours perfectly.",
+                desc: "You're here to soak up every ounce of Milwaukee's soul - from Jazz in the Park to live shows in historic venues. Your Instagram will be fire with Third Ward murals, your weekends packed with food festivals, and you'll have a favorite barista at five different coffee shops. You don't just attend events; you discover them before they're cool. Milwaukee's creative energy matches yours perfectly.",
                 squad: "Creative Collective",
-                major: "Communications or Arts",
+                major: "Digital Media or Arts",
                 hangout: "Brady Street everything",
                 season: "Summerfest (world's largest music fest)",
                 spots: [
                     { emoji: "🎭", name: "Pabst Theater", desc: "Historic venue, indie shows" },
                     { emoji: "🎨", name: "MARN Gallery", desc: "Student art exhibitions" },
                     { emoji: "☕", name: "Anodyne Coffee", desc: "Local roaster, creative hub" },
-                    { emoji: "🎵", name: "Jazz Estate", desc: "Intimate live music since 1977" }
+                    { emoji: "🎵", name: "Turner Hall Ballroom", desc: "Live music since 1882" }
                 ],
                 shareText: "I'm a Culture & Vibes Curator at Marquette! Milwaukee's creative scene is my classroom 🎨✨"
             }
@@ -994,7 +1028,7 @@
             
             // Update result display
             document.getElementById('resultIcon').textContent = result.icon;
-            document.getElementById('resultTitle').innerHTML = `<span id="resultIcon">${result.icon}</span> You're a ${result.title}!`;
+            document.getElementById('resultTitle').textContent = `You're a ${result.title}!`;
             document.getElementById('resultDesc').textContent = result.desc;
             document.getElementById('squadMatch').textContent = result.squad;
             document.getElementById('majorMatch').textContent = result.major;
@@ -1013,13 +1047,14 @@
             `).join('');
             document.getElementById('spotsList').innerHTML = spotsHtml;
             
-            // Populate other adventures
+            // Populate other adventures with click indicators
             const othersHtml = Object.keys(results)
                 .filter(key => key !== resultKey)
                 .map(key => `
                     <div class="other-card" onclick="switchResult('${key}')">
                         <div class="other-icon">${results[key].icon}</div>
                         <div class="other-name">${results[key].title.replace('Urban ', '').replace('Startup Scene ', '')}</div>
+                        <div class="click-indicator">EXPLORE →</div>
                     </div>
                 `).join('');
             document.getElementById('otherAdventures').innerHTML = othersHtml;
@@ -1044,7 +1079,7 @@
             
             setTimeout(() => {
                 document.getElementById('resultIcon').textContent = result.icon;
-                document.getElementById('resultTitle').innerHTML = `<span id="resultIcon">${result.icon}</span> You're a ${result.title}!`;
+                document.getElementById('resultTitle').textContent = `You're a ${result.title}!`;
                 document.getElementById('resultDesc').textContent = result.desc;
                 document.getElementById('squadMatch').textContent = result.squad;
                 document.getElementById('majorMatch').textContent = result.major;
@@ -1063,13 +1098,14 @@
                 `).join('');
                 document.getElementById('spotsList').innerHTML = spotsHtml;
                 
-                // Update other adventures
+                // Update other adventures with click indicators
                 const othersHtml = Object.keys(results)
                     .filter(otherKey => otherKey !== key)
                     .map(otherKey => `
                         <div class="other-card" onclick="switchResult('${otherKey}')">
                             <div class="other-icon">${results[otherKey].icon}</div>
                             <div class="other-name">${results[otherKey].title.replace('Urban ', '').replace('Startup Scene ', '')}</div>
+                            <div class="click-indicator">EXPLORE →</div>
                         </div>
                     `).join('');
                 document.getElementById('otherAdventures').innerHTML = othersHtml;
