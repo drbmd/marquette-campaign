@@ -203,12 +203,7 @@
         .card-emoji {
             font-size: 48px;
             margin-bottom: 15px;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            /* Removed animation here - no more bouncing */
         }
         
         .card-title {
@@ -262,14 +257,19 @@
         }
         
         .disclaimer {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 187, 0, 0.15);
             backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 10px;
             margin: 30px 0;
             font-size: 13px;
             line-height: 1.6;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 187, 0, 0.3);
+            color: white;
+        }
+        
+        .disclaimer strong {
+            color: #FFBB00;
         }
         
         @media (max-width: 768px) {
@@ -400,6 +400,12 @@
                         <div class="card-desc">90-day roadmap with success metrics, ROI calculator, and skeptics guide</div>
                         <div class="badge recommended">Start Here</div>
                     </a>
+                    <a href="visit-guide.html" class="card">
+                        <div class="card-emoji">📋</div>
+                        <div class="card-title">Visit Team Quick Start</div>
+                        <div class="card-desc">Step-by-step guide for the Visit Team to launch pilot program</div>
+                        <div class="badge">For Visit Team</div>
+                    </a>
                 </div>
             </section>
             
@@ -413,7 +419,7 @@
                     <a href="quiz.html?name=TestStudent&email=preview@marquette.edu" class="card">
                         <div class="card-emoji">🧪</div>
                         <div class="card-title">Test Quiz Experience</div>
-                        <div class="card-desc">Preview the personalized quiz experience with sample data</div>
+                        <div class="card-desc">Preview the Vibe Check quiz with sample data. Shows "Welcome, TestStudent!" greeting and pre-fills email to demonstrate personalization capabilities</div>
                         <div class="badge">Try It</div>
                     </a>
                     <a href="#" onclick="alert('Tracking documentation would include: UTM parameters, Google Analytics setup, conversion tracking, and attribution modeling. This would be provided during implementation.'); return false;" class="card">
@@ -430,10 +436,6 @@
             <p><strong>Built for Marquette University Admissions</strong></p>
             <p style="margin-top: 10px;">
                 Developed with zero production cost • Ready for immediate deployment • No IT dependencies
-            </p>
-            <p style="margin-top: 20px; font-size: 14px;">
-                Questions? <a href="mailto:admissions@marquette.edu">Contact Admissions</a> | 
-                <a href="/results#cta">Schedule Implementation Call</a>
             </p>
             <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
                 📍 Best viewed on desktop and mobile devices<br>
