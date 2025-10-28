@@ -84,44 +84,46 @@
         }
         
         .highlight {
-            background: #fff9e6;
+            background: #ffeb99;
             padding: 2px 6px;
             border-radius: 4px;
             font-weight: 600;
             color: #003865;
+            border: 1px solid #ffdd66;
         }
         
+        /* Reduced CTA section by 10% */
         .cta-section {
             background: linear-gradient(135deg, #FFBB00 0%, #FFC933 100%);
-            padding: 25px;
+            padding: 22px; /* reduced from 25px */
             border-radius: 12px;
             text-align: center;
-            margin: 25px 0;
+            margin: 22px 0; /* reduced from 25px */
             box-shadow: 0 4px 15px rgba(255, 187, 0, 0.3);
         }
         
         .cta-title {
             color: #003865;
-            font-size: 20px;
+            font-size: 18px; /* reduced from 20px */
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 9px; /* reduced from 10px */
         }
         
         .cta-subtitle {
             color: #003865;
-            font-size: 14px;
-            margin-bottom: 15px;
+            font-size: 13px; /* reduced from 14px */
+            margin-bottom: 13px; /* reduced from 15px */
             opacity: 0.9;
         }
         
         .cta-button {
             background: #003865;
             color: white;
-            padding: 14px 32px;
+            padding: 12px 30px; /* reduced from 14px 32px */
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px; /* reduced from 16px */
             display: inline-block;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 56, 101, 0.3);
@@ -133,30 +135,56 @@
             box-shadow: 0 6px 16px rgba(0, 56, 101, 0.4);
         }
         
+        /* Updated secondary options with button styling */
         .secondary-options {
             margin-top: 20px;
-            padding: 15px;
+            padding: 20px;
             background: #f8f9fa;
             border-radius: 8px;
             text-align: center;
         }
         
-        .option-link {
-            color: #003865;
+        .options-title {
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+        
+        .option-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        /* Button-style links for better visibility */
+        .option-button {
+            color: white;
+            background: #003865;
             text-decoration: none;
             font-weight: 600;
             font-size: 14px;
-            margin: 0 10px;
-            padding: 8px 15px;
+            padding: 10px 20px;
             display: inline-block;
-            border: 2px solid transparent;
-            border-radius: 20px;
+            border: 2px solid #003865;
+            border-radius: 25px;
             transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 56, 101, 0.2);
         }
         
-        .option-link:hover {
-            border-color: #003865;
-            background: white;
+        .option-button:hover {
+            background: #005CA9;
+            border-color: #005CA9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 56, 101, 0.3);
+        }
+        
+        .options-footer {
+            font-size: 12px;
+            color: #999;
+            margin-top: 10px;
         }
         
         .signature {
@@ -189,6 +217,18 @@
             font-size: 14px;
             color: #856404;
         }
+        
+        /* Mobile responsiveness */
+        @media (max-width: 480px) {
+            .option-buttons {
+                flex-direction: column;
+            }
+            
+            .option-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -207,38 +247,45 @@
         
         <!-- Email Body -->
         <div class="email-body">
-            <div class="greeting">Hey there,</div>
+            <div class="greeting">Hey there [Name],</div>
             
             <div class="content-block">
-                Let's skip the fluff – you're probably drowning in college emails right now. Here's why Marquette actually hits different: We're in <span class="highlight">downtown Milwaukee</span> (yes, the city is your campus), which means real internships at real companies, not just busy work. 
+                Let's skip the fluff — you're probably drowning in college emails right now. Here's why Marquette actually hits different: We're in <span class="highlight">downtown Milwaukee</span> (yes, the city is your campus), which means real internships at real companies, not just busy work. 
             </div>
             
             <div class="content-block">
-                Our grads? <span class="highlight">96% have jobs or are in grad school within 6 months</span> because they graduate with actual experience, not just a degree. Plus, with 250+ clubs and D1 sports, you'll find your people – whether you're into entrepreneurship, social justice, service learning, or literally anything else.
+                Our grads? <span class="highlight">96% have jobs or are in grad school within 6 months</span> because they graduate with actual experience, not just a degree. Plus, with 250+ clubs and D1 sports, you'll find your people — whether you're into entrepreneurship, social justice, service learning, or literally anything else.
             </div>
             
-            <!-- Main CTA -->
+            <!-- Main CTA (reduced size by 10%) -->
             <div class="cta-section">
                 <div class="cta-title">Curious if we match your energy?</div>
                 <div class="cta-subtitle">Take our 2-minute vibe check (no email required, actually fun)</div>
-                <a href="https://marquette.edu/vibe-check" class="cta-button">Take the Vibe Check ✨</a>
+                <a href="quiz.html" class="cta-button">Take the Vibe Check ✨</a>
             </div>
             
             <div class="content-block">
-                This isn't about prestige or rankings – it's about finding a place where you can actually make an impact while figuring out who you want to be. As a Jesuit university, we're built on this idea of developing the whole person – basically, we care about your growth beyond just academics, whether that's leadership, service, or just becoming someone who makes the world less terrible.
+                This isn't about prestige or rankings — it's about finding a place where you can actually make an impact while figuring out who you want to be. As a Jesuit university, we're built on this idea of developing the whole person — basically, we care about your growth beyond just academics, whether that's leadership, service, or just becoming someone who makes the world less terrible.
             </div>
             
             <div class="content-block">
                 <strong>Quick Milwaukee perks nobody tells you about:</strong> The Hop streetcar is FREE (actually free, not student-discount-free). You're walking distance from the Third Ward (think Brooklyn vibes), Brady Street (vintage shops and coffee), and the lakefront (beach volleyball in September? Yes.). Plus internships at Northwestern Mutual, Kohl's, and tons of startups that actually lead to jobs.
             </div>
             
-            <!-- Secondary Options -->
+            <!-- PS Section moved here -->
+            <div class="ps-section">
+                <strong>P.S.</strong> Financial aid is real here — we gave out $170M+ last year. Average package? Around $30K. Don't let sticker price scare you off. Also, Milwaukee cost of living is way cheaper than Chicago or NYC. Just saying. 💛
+            </div>
+            
+            <!-- Secondary Options with button styling -->
             <div class="secondary-options">
-                <div style="margin-bottom: 10px; font-size: 13px; color: #666;">Other ways to connect:</div>
-                <a href="https://admissions.marquette.edu/portal/daily-visits" class="option-link">Visit Campus</a>
-                <a href="https://instagram.com/MarquetteU" class="option-link">DM @MarquetteU</a>
-                <a href="tel:4142887302" class="option-link">Call Us</a>
-                <div style="margin-top: 10px; font-size: 12px; color: #999;">No pressure, just real answers to whatever you're wondering about</div>
+                <div class="options-title">Other ways to connect:</div>
+                <div class="option-buttons">
+                    <a href="https://admissions.marquette.edu/portal/daily-visits" class="option-button">📍 Visit Campus</a>
+                    <a href="https://instagram.com/MarquetteU" class="option-button">📱 DM @MarquetteU</a>
+                    <a href="tel:4142887302" class="option-button">📞 Call Us</a>
+                </div>
+                <div class="options-footer">No pressure, just real answers to whatever you're wondering about</div>
             </div>
             
             <!-- Signature -->
@@ -250,11 +297,6 @@
                     Office Hours: M-F, 8am-4:30pm CST<br>
                     Visit: <a href="https://admissions.marquette.edu/portal/daily-visits" style="color: #003865;">Book a campus tour</a>
                 </div>
-            </div>
-            
-            <!-- PS Section -->
-            <div class="ps-section">
-                <strong>P.S.</strong> Financial aid is real here – we gave out $170M+ last year. Average package? Around $30K. Don't let sticker price scare you off. Also, Milwaukee cost of living is way cheaper than Chicago or NYC. Just saying. 💛
             </div>
         </div>
     </div>
