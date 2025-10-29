@@ -66,8 +66,15 @@
         
         h1 {
             font-size: 42px;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .author-name {
+            font-size: 20px;
+            color: #FFBB00;
+            margin-bottom: 15px;
+            font-weight: 600;
         }
         
         .subtitle {
@@ -272,6 +279,44 @@
             color: #FFBB00;
         }
         
+        .citations {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-size: 11px;
+            line-height: 1.8;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .citations h3 {
+            color: #FFBB00;
+            font-size: 14px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .citations ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .citations li {
+            margin-bottom: 6px;
+            padding-left: 15px;
+            position: relative;
+        }
+        
+        .citations li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #FFBB00;
+        }
+        
         @media (max-width: 768px) {
             h1 { font-size: 32px; }
             .subtitle { font-size: 16px; }
@@ -286,6 +331,7 @@
         <header class="header">
             <div class="logo">MARQUETTE UNIVERSITY</div>
             <h1>Gen Z Recruitment Portfolio</h1>
+            <div class="author-name">Nicholas B</div>
             <p class="subtitle">
                 Interactive campaigns that connect with prospective students through authentic, 
                 Milwaukee-specific content that drives measurable engagement improvements
@@ -400,47 +446,25 @@
                         <div class="card-desc">90-day roadmap with success metrics, ROI calculator, and skeptics guide</div>
                         <div class="badge recommended">Start Here</div>
                     </a>
-                    <a href="visit-guide.html" class="card">
-                        <div class="card-emoji">📋</div>
-                        <div class="card-title">Visit Team Quick Start</div>
-                        <div class="card-desc">Step-by-step guide for the Visit Team to launch pilot program</div>
-                        <div class="badge">For Visit Team</div>
-                    </a>
-                </div>
-            </section>
-            
-            <!-- Additional Resources -->
-            <section class="section">
-                <div class="section-header">
-                    <span class="section-icon">🔍</span>
-                    <h2 class="section-title">Testing & Validation</h2>
-                </div>
-                <div class="cards">
-                    <a href="quiz.html?name=TestStudent&email=preview@marquette.edu" class="card">
-                        <div class="card-emoji">🧪</div>
-                        <div class="card-title">Test Quiz Experience</div>
-                        <div class="card-desc">Preview the Vibe Check quiz with sample data. Shows "Welcome, TestStudent!" greeting and pre-fills email to demonstrate personalization capabilities</div>
-                        <div class="badge">Try It</div>
-                    </a>
-                    <a href="#" onclick="alert('Tracking documentation would include: UTM parameters, Google Analytics setup, conversion tracking, and attribution modeling. This would be provided during implementation.'); return false;" class="card">
-                        <div class="card-emoji">📊</div>
-                        <div class="card-title">Measurement Guide</div>
-                        <div class="card-desc">Detailed tracking and analytics setup documentation</div>
-                        <div class="badge">Coming Soon</div>
-                    </a>
                 </div>
             </section>
         </div>
         
+        <div class="citations">
+            <h3>Metrics Citations & Sources</h3>
+            <ul>
+                <li><strong>CTR Improvement (Up to 2x):</strong> Based on documented higher education case studies including Tulane SoPA (nearly doubled inquiries), UT Health Science Center (250% increase in applications), and interactive content generating 2x conversions versus passive content (Upland/Kapost).</li>
+                <li><strong>Lead Generation (1.5-2.5x):</strong> Interactive content typically delivers 1.5-2.5x improvement in qualified leads with exceptional execution potentially reaching 3x. Sources: RevenueHunt (2% to 5% conversion increase), Griffith College Ireland (20% YoY increase), Webster University Geneva (30% enrollment surge).</li>
+                <li><strong>Quiz Completion (75-85%):</strong> Riddle (2022, 3.3 billion data points) shows 81.5% completion rate; Interact (2024/2025) reports 65% overall completion; Outgrow documents 65-85% for short quizzes (3-7 questions); Opinion Stage claims 90% for personality quizzes; WordStream/Qzzr reports over 80% completion.</li>
+                <li><strong>Baseline Metrics:</strong> Education sector email marketing averages 28.5% open rate and 4.4% CTR (Campaign Monitor 2022); HubSpot (2023) shows 35.4% open rate for higher education; Constant Contact (2024) reports 39.5% open rate for education sector.</li>
+                <li><strong>Interactive Engagement:</strong> Visitors spend 3 minutes 27 seconds on pages with quizzes versus 54 seconds global average (Riddle 2022); Interactive content leads score 40% higher on qualification metrics (Outgrow); Quiz opt-in rates achieve 41.4% versus pop-ups at 1.9% (Riddle).</li>
+                <li><strong>Personalization Impact:</strong> Personalized CTAs deliver 202% better conversion than basic CTAs (HubSpot); Segmentation yields 30% higher opens and 50% higher click-throughs; Drip campaigns achieve 634% higher CTR versus sporadic messages (Carnegie Higher Ed Marketing 2021).</li>
+                <li><strong>Gen Z Preferences:</strong> 68% of students prefer email for college information (RNL 2023); 81% of Gen Z check email daily; 55% prefer email during application process versus 33% for text; 54% of Gen Z support formal email branding (Exclaimer Study 2024).</li>
+            </ul>
+        </div>
+        
         <footer class="footer">
             <p><strong>Built for Marquette University Admissions</strong></p>
-            <p style="margin-top: 10px;">
-                Developed with zero production cost • Ready for immediate deployment • No IT dependencies
-            </p>
-            <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
-                📍 Best viewed on desktop and mobile devices<br>
-                ✅ All content verified against official Marquette sources
-            </p>
         </footer>
     </div>
 </body>
