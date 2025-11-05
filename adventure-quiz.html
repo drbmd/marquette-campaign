@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Your Milwaukee Adventure Style 🗺️ | Marquette University</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght=400;600;700&display=swap" rel="stylesheet">
+    <link href="assets/css/common.css" rel="stylesheet">
+    <script src="assets/js/utils.js"></script>
     <style>
         * {
             margin: 0;
@@ -596,15 +598,17 @@
 </head>
 <body>
     <div class="quiz-container">
+        <a href="#main-content" class="skip-to-main">Skip to quiz</a>
         <div class="quiz-header">
-            <a href="https://admissions.marquette.edu/portal/daily-visits" class="logo">Marquette University</a>
+            <a href="https://admissions.marquette.edu/portal/daily-visits" class="logo" rel="noopener" aria-label="Marquette University - Schedule a Campus Visit">Marquette University</a>
             <h1 class="quiz-title">Find Your Milwaukee Adventure</h1>
             <p class="quiz-subtitle">Match your vibe to Milwaukee's best spots</p>
         </div>
-        
+
+        <main id="main-content">
         <div class="progress-container">
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress"></div>
+            <div class="progress-bar" role="progressbar" aria-label="Adventure quiz progress">
+                <div class="progress-fill" id="progress" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             <div class="progress-text" id="progressText">Question 1 of 5</div>
         </div>
@@ -889,8 +893,8 @@
             </div>
             
             <div class="action-buttons">
-                <button class="action-btn primary" onclick="shareResults()">Share Your Adventure Style 🚀</button>
-                <a href="https://admissions.marquette.edu/portal/daily-visits" class="action-btn secondary">Schedule Your Campus Visit</a>
+                <button class="action-btn primary" onclick="shareResults()" aria-label="Share your adventure quiz results">Share Your Adventure Style 🚀</button>
+                <a href="https://admissions.marquette.edu/portal/daily-visits" class="action-btn secondary" rel="noopener" aria-label="Schedule your Marquette campus visit">Schedule Your Campus Visit</a>
             </div>
             
             <div class="share-section">
@@ -919,8 +923,9 @@
                 </div>
             </div>
         </div>
+        </main>
     </div>
-    
+
     <script>
         // Quiz state
         let currentQuestion = 1;
@@ -1001,26 +1006,55 @@
             document.getElementById(`q${currentQuestion}`).classList.remove('active');
             document.getElementById(`q${next}`).classList.add('active');
             currentQuestion = next;
-            
+
             // Update progress
             const progress = (currentQuestion / 5) * 100;
-            document.getElementById('progress').style.width = `${progress}%`;
+            const progressBar = document.getElementById('progress');
+            progressBar.style.width = `${progress}%`;
+            progressBar.setAttribute('aria-valuenow', progress);
             document.getElementById('progressText').textContent = `Question ${currentQuestion} of 5`;
+
+            // Track event
+            MarquetteUtils.trackEvent('Adventure Quiz', 'Question Answered', `Q${currentQuestion-1}: ${trait}`);
+
+            // Announce to screen readers
+            const announcement = document.createElement('div');
+            announcement.setAttribute('role', 'status');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.className = 'sr-only';
+            announcement.textContent = `Question ${currentQuestion} of 5`;
+            document.body.appendChild(announcement);
+            setTimeout(() => announcement.remove(), 1000);
         }
         
         function showResult(type) {
-            // Determine result based on final answer and previous choices
+            // Determine result based on scoring across all answers
+            answers.push(type);
+
+            // Improved scoring algorithm
+            const scores = {
+                nightowl: 0,
+                explorer: 0,
+                hustler: 0,
+                curator: 0
+            };
+
+            // Score each answer
+            answers.forEach(answer => {
+                if (['night', 'hibernate', 'solo'].includes(answer)) scores.nightowl += 1;
+                if (['nature', 'brunch', 'morning', 'embrace'].includes(answer)) scores.explorer += 1;
+                if (['grind', 'corporate', 'afternoon', 'escape'].includes(answer)) scores.hustler += 1;
+                if (['culture', 'creative', 'food', 'sports'].includes(answer)) scores.curator += 1;
+            });
+
+            // Find highest score
             let resultKey = type;
-            
-            // Simple logic to determine adventure style
-            if (type === 'nightowl' || answers.includes('night')) {
-                resultKey = 'nightowl';
-            } else if (type === 'explorer' || answers.includes('nature')) {
-                resultKey = 'explorer';
-            } else if (type === 'hustler' || answers.includes('grind')) {
-                resultKey = 'hustler';
-            } else if (type === 'curator' || answers.includes('culture')) {
-                resultKey = 'curator';
+            let maxScore = 0;
+            for (const [key, score] of Object.entries(scores)) {
+                if (score > maxScore) {
+                    maxScore = score;
+                    resultKey = key;
+                }
             }
             
             currentResult = resultKey;
@@ -1155,43 +1189,70 @@
         document.head.appendChild(style);
         
         // Share functions
-        function shareResults() {
+        async function shareResults() {
             const result = results[currentResult];
+            MarquetteUtils.trackEvent('Adventure Quiz', 'Share Initiated', currentResult);
+
             if (navigator.share) {
                 navigator.share({
                     title: `I'm a ${result.title}!`,
                     text: result.shareText,
                     url: window.location.href
-                }).catch(err => console.log('Share cancelled'));
+                }).catch(err => {
+                    if (err.name !== 'AbortError') {
+                        copyLink();
+                    }
+                });
             } else {
                 copyLink();
             }
         }
-        
-        function shareInstagram() {
+
+        async function shareInstagram() {
             const result = results[currentResult];
-            navigator.clipboard.writeText(result.shareText + '\n\nFind your Milwaukee adventure @MarquetteU');
-            alert('Caption copied! Open Instagram and paste 📸');
+            const text = result.shareText + '\n\nFind your Milwaukee adventure @MarquetteU';
+            const success = await MarquetteUtils.copyToClipboard(text);
+
+            if (success) {
+                alert('Caption copied! Open Instagram and paste 📸');
+                MarquetteUtils.trackEvent('Adventure Quiz', 'Share Instagram', currentResult);
+            } else {
+                alert('Could not copy to clipboard. Please try again.');
+            }
         }
-        
-        function shareTikTok() {
-            const result = results[currentResult];
+
+        async function shareTikTok() {
             window.open('https://www.tiktok.com/upload', '_blank');
-            navigator.clipboard.writeText(result.shareText + '\n\n#MarquetteU #MilwaukeeAdventure #CollegeLife');
-            alert('Caption copied for your TikTok! 🎵');
+            const result = results[currentResult];
+            const text = result.shareText + '\n\n#MarquetteU #MilwaukeeAdventure #CollegeLife';
+            const success = await MarquetteUtils.copyToClipboard(text);
+
+            if (success) {
+                alert('Caption copied for your TikTok! 🎵');
+                MarquetteUtils.trackEvent('Adventure Quiz', 'Share TikTok', currentResult);
+            } else {
+                alert('Could not copy to clipboard. Please try again.');
+            }
         }
-        
-        function shareTwitter() {
+
+        async function shareTwitter() {
             const result = results[currentResult];
             const text = encodeURIComponent(result.shareText);
             window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+            MarquetteUtils.trackEvent('Adventure Quiz', 'Share Twitter', currentResult);
         }
-        
-        function copyLink() {
+
+        async function copyLink() {
             const result = results[currentResult];
             const text = result.shareText + '\n\nFind yours: ' + window.location.href;
-            navigator.clipboard.writeText(text);
-            alert('Link and caption copied! 🔗');
+            const success = await MarquetteUtils.copyToClipboard(text);
+
+            if (success) {
+                alert('Link and caption copied! 🔗');
+                MarquetteUtils.trackEvent('Adventure Quiz', 'Share Copy Link', currentResult);
+            } else {
+                alert('Could not copy to clipboard. Please try again.');
+            }
         }
     </script>
 </body>

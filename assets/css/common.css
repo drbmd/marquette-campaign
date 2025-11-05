@@ -1,0 +1,247 @@
+/* Marquette University - Shared Styles */
+/* Brand Colors */
+:root {
+    --marquette-blue: #003865;
+    --marquette-blue-light: #005CA9;
+    --marquette-gold: #FFBB00;
+    --marquette-gold-light: #FFC933;
+    --text-dark: #333;
+    --text-medium: #666;
+    --text-light: #999;
+    --bg-light: #f8f9fa;
+    --bg-lighter: #e9ecef;
+    --border-color: #e0e0e0;
+    --focus-ring: 0 0 0 3px rgba(0, 92, 169, 0.3);
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Base Typography */
+body {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+/* Accessibility: Focus Indicators */
+*:focus-visible {
+    outline: 2px solid var(--marquette-blue-light);
+    outline-offset: 2px;
+}
+
+a:focus-visible,
+button:focus-visible {
+    box-shadow: var(--focus-ring);
+}
+
+/* Skip to Main Content Link */
+.skip-to-main {
+    position: absolute;
+    top: -100px;
+    left: 0;
+    background: var(--marquette-blue);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 10000;
+    font-weight: 600;
+}
+
+.skip-to-main:focus {
+    top: 0;
+}
+
+/* Marquette Logo Component */
+.logo {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: var(--marquette-blue);
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--marquette-gold);
+    padding: 10px 20px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 2px 8px rgba(255, 187, 0, 0.3);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo:hover,
+.logo:focus {
+    background: var(--marquette-gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 187, 0, 0.4);
+}
+
+/* Gradient Backgrounds */
+.bg-gradient-blue {
+    background: linear-gradient(135deg, var(--marquette-blue) 0%, var(--marquette-blue-light) 100%);
+}
+
+.bg-gradient-gold {
+    background: linear-gradient(135deg, var(--marquette-gold) 0%, var(--marquette-gold-light) 100%);
+}
+
+/* Button Styles */
+.btn {
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    text-decoration: none;
+    display: inline-block;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--marquette-blue);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 56, 101, 0.3);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background: var(--marquette-blue-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 56, 101, 0.4);
+}
+
+.btn-secondary {
+    background: var(--marquette-gold);
+    color: var(--marquette-blue);
+    box-shadow: 0 4px 15px rgba(255, 187, 0, 0.3);
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+    background: var(--marquette-gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 187, 0, 0.4);
+}
+
+/* Interactive Cards */
+.card {
+    background: linear-gradient(135deg, var(--bg-light) 0%, white 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover,
+.card:focus-within {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 56, 101, 0.2);
+    border-color: var(--marquette-gold);
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+    .logo {
+        font-size: 18px;
+        padding: 8px 16px;
+    }
+
+    .btn {
+        width: 100%;
+        display: block;
+    }
+}
+
+/* Loading State */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    cursor: wait;
+}
+
+/* Error State */
+.error {
+    border-color: #dc3545;
+    background-color: #f8d7da;
+}
+
+.error-message {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Success State */
+.success {
+    border-color: #28a745;
+    background-color: #d4edda;
+}
+
+.success-message {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .btn {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
