@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Marketing Portfolio - Explore My Work</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #0a0e27;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.5);
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+            mix-blend-mode: screen;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .achievement-toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+            max-width: 300px;
+        }
+
+        .achievement-toast.show {
+            transform: translateX(0);
+        }
+
+        .achievement-toast .achievement-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            z-index: 10001;
+            transition: width 0.3s ease;
+        }
+
+        .exploration-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1rem;
+            border-radius: 12px;
+            color: white;
+            z-index: 9999;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .exploration-counter .count {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        nav a:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0%;
+            height: 2px;
+            background: #667eea;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .section {
+            position: relative;
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+            z-index: 1;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            line-height: 1.2;
+        }
+
+        .hero .glitch {
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero .glitch:hover {
+            animation: glitch 0.3s ease;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+        }
+
+        .interactive-prompt {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px dashed #667eea;
+            padding: 1.5rem;
+            border-radius: 12px;
+            color: white;
+            margin-top: 2rem;
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 3rem;
+        }
+
+        /* Marketing Challenge Game */
+        .challenge-game {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 900px;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .challenge-scenario {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .challenge-options {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .challenge-option {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            color: white;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .challenge-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .challenge-option:hover::before {
+            left: 100%;
+        }
+
+        .challenge-option:hover {
+            border-color: #667eea;
+            transform: translateX(10px);
+        }
+
+        .challenge-option.correct {
+            border-color: #51cf66;
+            background: rgba(81, 207, 102, 0.2);
+        }
+
+        .challenge-option.incorrect {
+            border-color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.2);
+        }
+
+        .challenge-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            color: white;
+            display: none;
+        }
+
+        .challenge-result.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        /* Draggable Skills Game */
+        .skills-game {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem auto;
+            max-width: 1000px;
+        }
+
+        .skills-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-dropzone {
+            background: rgba(102, 126, 234, 0.1);
+            border: 2px dashed rgba(102, 126, 234, 0.5);
+            border-radius: 12px;
+            padding: 1.5rem;
+            min-height: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-dropzone.drag-over {
+            background: rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+
+        .skill-dropzone h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .skill-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            margin: 0.5rem;
+            display: inline-block;
+            cursor: move;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .skill-badge:hover {
+            transform: rotate(-5deg) scale(1.1);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.5);
+        }
+
+        .skill-badge.dragging {
+            opacity: 0.5;
+            transform: rotate(10deg);
+        }
+
+        /* 3D Project Cards */
+        .projects-3d {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            perspective: 1000px;
+        }
+
+        .project-card-3d {
+            position: relative;
+            height: 400px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            cursor: pointer;
+        }
+
+        .project-card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) scale(1.05);
+        }
+
+        .project-card-3d.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card-back {
+            background: rgba(255,255,255,0.95);
+            color: #2c3e50;
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-front h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .flip-hint {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
+        /* Interactive Comparison Slider */
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 3rem auto;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            cursor: ew-resize;
+        }
+
+        .comparison-side {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            color: white;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .comparison-before {
+            left: 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        }
+
+        .comparison-after {
+            right: 0;
+            background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
+            clip-path: inset(0 0 0 50%);
+            transition: clip-path 0.1s ease;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            cursor: ew-resize;
+            z-index: 10;
+            transition: transform 0.2s ease;
+        }
+
+        .slider-handle:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+
+        /* Interactive Timeline */
+        .timeline-interactive {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+        }
+
+        .timeline-scrubber {
+            width: 100%;
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+            position: relative;
+            cursor: pointer;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .timeline-markers {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .timeline-marker:hover {
+            background: #667eea;
+            transform: scale(1.5);
+        }
+
+        .timeline-marker.active {
+            background: #667eea;
+            transform: scale(1.3);
+        }
+
+        .timeline-content {
+            color: white;
+            padding: 2rem;
+            min-height: 200px;
+        }
+
+        .timeline-step {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .timeline-step.active {
+            display: block;
+        }
+
+        .timeline-step h3 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Particle Effect Container */
+        .value-card-interactive {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 1rem;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .value-card-interactive::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .value-card-interactive:hover::before {
+            opacity: 1;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .value-card-interactive:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #667eea;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .value-card-interactive .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .value-card-interactive:hover .icon {
+            transform: rotateY(360deg);
+        }
+
+        .value-card-interactive h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card-interactive p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+        }
+
+        .value-card-interactive .hidden-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .value-card-interactive.expanded .hidden-detail {
+            max-height: 500px;
+        }
+
+        /* Chat-style Case Study */
+        .chat-case-study {
+            max-width: 800px;
+            margin: 3rem auto;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .chat-message {
+            margin: 1rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.5s ease forwards;
+        }
+
+        .chat-message.user {
+            text-align: right;
+        }
+
+        .chat-bubble {
+            display: inline-block;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            max-width: 80%;
+            position: relative;
+        }
+
+        .chat-message.user .chat-bubble {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .chat-message.assistant .chat-bubble {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .chat-avatar {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #667eea;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            margin: 0 0.5rem;
+            font-weight: bold;
+        }
+
+        .typing-indicator {
+            display: inline-block;
+            margin-left: 1rem;
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #667eea;
+            margin: 0 2px;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        /* Stats Counter Animation */
+        .animated-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 3rem auto;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            border-color: #667eea;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+        }
+
+        /* CTA Section */
+        .cta-interactive {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 5rem 2rem;
+            margin-top: 5rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-interactive::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-interactive h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn-interactive {
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-interactive::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .btn-interactive:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-interactive span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-primary-interactive {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-secondary-interactive {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        /* Easter Egg Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10002;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            color: white;
+            animation: bounceIn 0.5s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .modal-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-close {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-3d {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-slider {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <div class="achievement-toast" id="achievementToast">
+        <div class="achievement-title">Achievement Unlocked!</div>
+        <div class="achievement-text"></div>
+    </div>
+
+    <div class="exploration-counter">
+        <div>Discoveries</div>
+        <div class="count" id="explorationCount">0</div>
+        <div style="font-size: 0.8rem; opacity: 0.7;">Keep exploring!</div>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#challenge">Marketing Challenge</a></li>
+            <li><a href="#skills">Skills Game</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#journey">My Journey</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="section hero">
+        <div class="hero-content">
+            <h1 class="glitch">Find What Others Miss</h1>
+            <p class="subtitle">Marketing Strategist • Creator • Builder</p>
+            <p class="tagline">I don't just plan campaigns—I identify opportunities, craft narratives, and build the future.</p>
+            <div class="interactive-prompt">
+                <strong>This isn't a regular portfolio.</strong><br>
+                Click, drag, explore, and discover hidden achievements.<br>
+                Your adventure starts here.
+            </div>
+        </div>
+    </section>
+
+    <section id="challenge" class="section">
+        <h2 class="section-title">Test My Thinking</h2>
+        <div class="challenge-game">
+            <div class="challenge-scenario">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Marketing Challenge</h3>
+                <p>A sustainable shoe company is struggling. Their messaging focuses on "saving the planet" but sales are flat. What's the strategic pivot?</p>
+            </div>
+            <div class="challenge-options">
+                <div class="challenge-option" data-correct="false">
+                    <strong>Option A:</strong> Double down on environmental messaging with more statistics about carbon footprint
+                </div>
+                <div class="challenge-option" data-correct="false">
+                    <strong>Option B:</strong> Lower prices to compete with fast fashion brands
+                </div>
+                <div class="challenge-option" data-correct="true">
+                    <strong>Option C:</strong> Reframe as premium quality—highlight durability, comfort, and total cost of ownership
+                </div>
+                <div class="challenge-option" data-correct="false">
+                    <strong>Option D:</strong> Target only hardcore environmentalists with exclusive messaging
+                </div>
+            </div>
+            <div class="challenge-result" id="challengeResult"></div>
+        </div>
+    </section>
+
+    <section id="value" class="section">
+        <h2 class="section-title">What Makes Me Different</h2>
+        <p style="text-align: center; color: rgba(255,255,255,0.8); max-width: 700px; margin: 0 auto 3rem;">Click each card to reveal more</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+            <div class="value-card-interactive">
+                <div class="icon">🎯</div>
+                <h3>Strategic Pattern Recognition</h3>
+                <p>I spot market gaps others overlook—finding white space in crowded categories.</p>
+                <div class="hidden-detail">
+                    <strong>Example:</strong> Identified that "eco" products suffer from a quality perception problem, not an awareness problem. The solution wasn't more environmental messaging—it was reframing sustainability as a premium quality indicator.
+                </div>
+            </div>
+            <div class="value-card-interactive">
+                <div class="icon">💡</div>
+                <h3>Narrative Architecture</h3>
+                <p>I don't write copy—I build belief systems that change how people see products.</p>
+                <div class="hidden-detail">
+                    <strong>Example:</strong> Transformed "buy eco to save the planet" into "buy quality that lasts a lifetime (and happens to be sustainable)." Same product, completely different value proposition, better conversion.
+                </div>
+            </div>
+            <div class="value-card-interactive">
+                <div class="icon">⚡</div>
+                <h3>Concept to Code</h3>
+                <p>I prototype ideas in hours, not weeks. Full campaigns, functional, ready to test.</p>
+                <div class="hidden-detail">
+                    <strong>Example:</strong> This interactive portfolio? Built from scratch in a day. 800+ lines of custom code, particle systems, drag-and-drop games, 3D cards—all to prove I ship, not just strategize.
+                </div>
+            </div>
+            <div class="value-card-interactive">
+                <div class="icon">📊</div>
+                <h3>Data-Informed Creativity</h3>
+                <p>Every creative decision backed by research. Every claim defensible with evidence.</p>
+                <div class="hidden-detail">
+                    <strong>Example:</strong> Don't claim "5x longer lifespan" without sourcing. Don't say "superior materials" without specifics. Credibility is the foundation of conversion.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2 class="section-title">Skills Sorting Game</h2>
+        <p style="text-align: center; color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Drag skills to their categories (or just explore them!)</p>
+        <div class="skills-game">
+            <div id="skillsPool" style="text-align: center; margin-bottom: 2rem; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 12px;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Available Skills</h3>
+                <div class="skill-badge" draggable="true">Market Research</div>
+                <div class="skill-badge" draggable="true">HTML/CSS/JS</div>
+                <div class="skill-badge" draggable="true">Copywriting</div>
+                <div class="skill-badge" draggable="true">UX Design</div>
+                <div class="skill-badge" draggable="true">Brand Positioning</div>
+                <div class="skill-badge" draggable="true">Rapid Prototyping</div>
+                <div class="skill-badge" draggable="true">Content Strategy</div>
+                <div class="skill-badge" draggable="true">Data Analysis</div>
+                <div class="skill-badge" draggable="true">Web Animation</div>
+            </div>
+            <div class="skills-categories">
+                <div class="skill-dropzone" data-category="strategy">
+                    <h3>Strategy</h3>
+                </div>
+                <div class="skill-dropzone" data-category="creative">
+                    <h3>Creative</h3>
+                </div>
+                <div class="skill-dropzone" data-category="technical">
+                    <h3>Technical</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2 class="section-title">Featured Projects (Click to Flip)</h2>
+        <div class="projects-3d">
+            <div class="project-card-3d">
+                <div class="card-face card-front">
+                    <div class="card-icon">🌱</div>
+                    <h3>Quality First Campaign</h3>
+                    <p>Reframing sustainable products as premium quality</p>
+                    <div class="flip-hint">Click to flip →</div>
+                </div>
+                <div class="card-face card-back">
+                    <h3 style="color: #667eea;">The Challenge</h3>
+                    <p>Eco products seen as lower quality, higher price sacrifices for environmental virtue.</p>
+                    <h3 style="color: #667eea; margin-top: 1rem;">The Solution</h3>
+                    <p>Reframe sustainability as a quality indicator: better materials, longer lifespan, superior value.</p>
+                    <h3 style="color: #667eea; margin-top: 1rem;">The Result</h3>
+                    <p>Full landing page, 6 value propositions, comparison framework, interactive design—built in 1 day.</p>
+                    <a href="quality-first.html" target="_blank" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: #667eea; color: white; text-decoration: none; border-radius: 25px;">View Live</a>
+                </div>
+            </div>
+
+            <div class="project-card-3d">
+                <div class="card-face card-front">
+                    <div class="card-icon">🎮</div>
+                    <h3>Interactive Portfolio</h3>
+                    <p>This experience you're in right now</p>
+                    <div class="flip-hint">Click to flip →</div>
+                </div>
+                <div class="card-face card-back">
+                    <h3 style="color: #667eea;">The Goal</h3>
+                    <p>Prove I can build, not just strategize. Show creativity and technical execution.</p>
+                    <h3 style="color: #667eea; margin-top: 1rem;">The Features</h3>
+                    <p>Particle systems, drag-and-drop games, 3D card flips, interactive challenges, achievement system, comparison sliders.</p>
+                    <h3 style="color: #667eea; margin-top: 1rem;">The Tech</h3>
+                    <p>Pure HTML/CSS/JS. No frameworks. 1000+ lines of custom code. Built to impress.</p>
+                </div>
+            </div>
+
+            <div class="project-card-3d">
+                <div class="card-face card-front">
+                    <div class="card-icon">🚀</div>
+                    <h3>Your Project Here</h3>
+                    <p>Let's build something amazing together</p>
+                    <div class="flip-hint">Click to flip →</div>
+                </div>
+                <div class="card-face card-back">
+                    <h3 style="color: #667eea;">Ready to Collaborate?</h3>
+                    <p>I bring strategy, creativity, and execution to every project.</p>
+                    <p style="margin-top: 1rem;">Whether you need:</p>
+                    <ul style="text-align: left; margin-top: 0.5rem;">
+                        <li>Campaign strategy</li>
+                        <li>Brand positioning</li>
+                        <li>Landing pages</li>
+                        <li>Content creation</li>
+                    </ul>
+                    <p style="margin-top: 1rem;">Let's make it happen.</p>
+                    <a href="#contact" style="display: inline-block; margin-top: 1rem; padding: 0.75rem 1.5rem; background: #667eea; color: white; text-decoration: none; border-radius: 25px;">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comparison" class="section">
+        <h2 class="section-title">My Approach (Drag to Compare)</h2>
+        <div class="comparison-slider" id="comparisonSlider">
+            <div class="comparison-side comparison-before">
+                <div>
+                    <h3>Traditional Marketing</h3>
+                    <p>Strategy decks → Handoff to creative → Wait for development → Launch weeks later</p>
+                </div>
+            </div>
+            <div class="comparison-side comparison-after" id="comparisonAfter">
+                <div>
+                    <h3>My Integrated Approach</h3>
+                    <p>Strategy → Immediate prototyping → Live campaigns in days → Rapid iteration</p>
+                </div>
+            </div>
+            <div class="slider-handle" id="sliderHandle">⟷</div>
+        </div>
+    </section>
+
+    <section id="journey" class="section">
+        <h2 class="section-title">My Journey (Interactive Timeline)</h2>
+        <div class="timeline-interactive">
+            <div class="timeline-scrubber" id="timelineScrubber">
+                <div class="timeline-progress" id="timelineProgress"></div>
+            </div>
+            <div class="timeline-markers" id="timelineMarkers">
+                <div class="timeline-marker active" data-step="0"></div>
+                <div class="timeline-marker" data-step="1"></div>
+                <div class="timeline-marker" data-step="2"></div>
+                <div class="timeline-marker" data-step="3"></div>
+                <div class="timeline-marker" data-step="4"></div>
+            </div>
+            <div class="timeline-content">
+                <div class="timeline-step active" data-step="0">
+                    <h3>Discovery: The Pattern Emerges</h3>
+                    <p>Started noticing that most marketing problems aren't execution issues—they're positioning issues. The best campaigns don't convince people to buy—they reframe what the product means.</p>
+                </div>
+                <div class="timeline-step" data-step="1">
+                    <h3>Skill Building: Beyond Strategy</h3>
+                    <p>Realized that being a "strategist" who can't execute is like being an architect who can't read blueprints. Learned to code, design, and build so ideas don't die in PowerPoint.</p>
+                </div>
+                <div class="timeline-step" data-step="2">
+                    <h3>The Insight: Speed is Strategy</h3>
+                    <p>In markets that move fast, the ability to prototype and test beats perfect planning. Ship and iterate beats theorize and wait.</p>
+                </div>
+                <div class="timeline-step" data-step="3">
+                    <h3>Integration: Full-Stack Marketing</h3>
+                    <p>Combined strategic thinking with creative execution and technical skills. Now I can take a market insight and turn it into a live campaign in days, not months.</p>
+                </div>
+                <div class="timeline-step" data-step="4">
+                    <h3>Today: Building the Future</h3>
+                    <p>Looking for opportunities to apply this integrated approach at scale. Whether it's identifying new market segments, reframing categories, or building campaigns that convert.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="section">
+        <h2 class="section-title">By the Numbers</h2>
+        <div class="animated-stats">
+            <div class="stat-card" data-stat="projects">
+                <div class="stat-number" data-target="15">0</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card" data-stat="speed">
+                <div class="stat-number" data-target="48">0</div>
+                <div class="stat-label">Avg Hours to Prototype</div>
+            </div>
+            <div class="stat-card" data-stat="code">
+                <div class="stat-number" data-target="1000">0</div>
+                <div class="stat-label">Lines of Code (This Site)</div>
+            </div>
+            <div class="stat-card" data-stat="skills">
+                <div class="stat-number" data-target="20">0</div>
+                <div class="stat-label">Core Competencies</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="chat-case-study section">
+        <h2 class="section-title">How I Work (Chat Style)</h2>
+        <div id="chatContainer"></div>
+    </div>
+
+    <section id="contact" class="cta-interactive">
+        <div class="cta-content">
+            <h2>Let's Create Something Remarkable</h2>
+            <p>I'm looking for opportunities where strategic thinking meets rapid execution.</p>
+            <p>Full-time roles, consulting projects, or contract work—let's talk.</p>
+            <div class="cta-buttons">
+                <a href="mailto:your.email@example.com" class="btn-interactive btn-primary-interactive">
+                    <span>📧 Email Me</span>
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" class="btn-interactive btn-secondary-interactive" target="_blank">
+                    <span>💼 LinkedIn</span>
+                </a>
+                <a href="https://github.com/yourusername" class="btn-interactive btn-secondary-interactive" target="_blank">
+                    <span>🐙 GitHub</span>
+                </a>
+            </div>
+            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="font-size: 1rem; opacity: 0.8;">
+                    Based in [Your Location] • Available for remote work • Open to relocation
+                </p>
+                <p style="font-size: 0.9rem; opacity: 0.6; margin-top: 1rem;">
+                    Found all the easter eggs? Try the Konami code... ↑ ↑ ↓ ↓ ← → ← → B A
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="easterEggModal">
+        <div class="modal-content">
+            <h2>🎉 Secret Unlocked!</h2>
+            <p>You found the Konami code! This is the kind of attention to detail I bring to every project.</p>
+            <p style="margin-top: 1rem;">Want to see what else I can build?</p>
+            <button class="modal-close" onclick="closeModal()">Awesome!</button>
+        </div>
+    </div>
+
+    <script>
+        // Particle System
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.radius = Math.random() * 2;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(102, 126, 234, 0.5)';
+                ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+
+            // Draw connections
+            particles.forEach((p1, i) => {
+                particles.slice(i + 1).forEach(p2 => {
+                    const dx = p1.x - p2.x;
+                    const dy = p1.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(102, 126, 234, ${0.2 * (1 - dist / 100)})`;
+                        ctx.stroke();
+                    }
+                });
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Cursor Follower
+        const cursorFollower = document.getElementById('cursorFollower');
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function updateCursor() {
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+            requestAnimationFrame(updateCursor);
+        }
+
+        updateCursor();
+
+        // Achievement System
+        let explorationCount = 0;
+        const achievements = {
+            firstClick: false,
+            cardFlip: false,
+            skillDrag: false,
+            challengeComplete: false,
+            scrollMaster: false,
+            konamiCode: false
+        };
+
+        function unlockAchievement(name, title, description) {
+            if (achievements[name]) return;
+            achievements[name] = true;
+            explorationCount++;
+            document.getElementById('explorationCount').textContent = explorationCount;
+
+            const toast = document.getElementById('achievementToast');
+            toast.querySelector('.achievement-title').textContent = title;
+            toast.querySelector('.achievement-text').textContent = description;
+            toast.classList.add('show');
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrollPercentage + '%';
+
+            if (scrollPercentage > 80 && !achievements.scrollMaster) {
+                unlockAchievement('scrollMaster', 'Deep Diver', 'You explored 80% of this portfolio!');
+            }
+        });
+
+        // Marketing Challenge
+        const challengeOptions = document.querySelectorAll('.challenge-option');
+        const challengeResult = document.getElementById('challengeResult');
+
+        challengeOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                if (this.classList.contains('correct') || this.classList.contains('incorrect')) return;
+
+                const isCorrect = this.dataset.correct === 'true';
+
+                challengeOptions.forEach(opt => {
+                    opt.style.pointerEvents = 'none';
+                    if (opt.dataset.correct === 'true') {
+                        opt.classList.add('correct');
+                    } else {
+                        opt.classList.add('incorrect');
+                    }
+                });
+
+                if (isCorrect) {
+                    challengeResult.innerHTML = `
+                        <div style="background: rgba(81, 207, 102, 0.2); padding: 1.5rem; border-radius: 12px; border: 2px solid #51cf66;">
+                            <h4 style="color: #51cf66; margin-bottom: 0.5rem;">✓ Exactly Right!</h4>
+                            <p>This is the "Quality First" approach I actually built. Instead of guilting people about the environment, reframe eco as a quality indicator. Same product, different narrative, better conversion.</p>
+                            <p style="margin-top: 1rem;"><strong>Why this works:</strong> Consumers already believe quality = higher price. If you position sustainable as premium quality, the price premium feels justified. You're not asking for sacrifice—you're offering superior value.</p>
+                        </div>
+                    `;
+                    unlockAchievement('challengeComplete', 'Strategic Thinker', 'You solved the marketing challenge!');
+                } else {
+                    challengeResult.innerHTML = `
+                        <div style="background: rgba(255, 107, 107, 0.2); padding: 1.5rem; border-radius: 12px; border: 2px solid #ff6b6b;">
+                            <h4 style="color: #ff6b6b; margin-bottom: 0.5rem;">Not Quite</h4>
+                            <p>Option C is the strategic pivot. The problem isn't that people don't know about sustainability—it's that they see it as a sacrifice. Reframing eco as quality changes the entire conversation.</p>
+                        </div>
+                    `;
+                }
+
+                challengeResult.classList.add('show');
+            });
+        });
+
+        // Value Cards Expansion
+        const valueCards = document.querySelectorAll('.value-card-interactive');
+        valueCards.forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+                if (!achievements.firstClick) {
+                    unlockAchievement('firstClick', 'Curious Explorer', 'You clicked your first interactive element!');
+                }
+            });
+        });
+
+        // 3D Card Flip
+        const projectCards = document.querySelectorAll('.project-card-3d');
+        projectCards.forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('flipped');
+                if (!achievements.cardFlip) {
+                    unlockAchievement('cardFlip', 'Card Master', 'You discovered the card flip feature!');
+                }
+            });
+        });
+
+        // Drag and Drop Skills
+        const skillBadges = document.querySelectorAll('.skill-badge');
+        const dropzones = document.querySelectorAll('.skill-dropzone');
+        let draggedElement = null;
+
+        skillBadges.forEach(badge => {
+            badge.addEventListener('dragstart', function(e) {
+                draggedElement = this;
+                this.classList.add('dragging');
+                if (!achievements.skillDrag) {
+                    unlockAchievement('skillDrag', 'Organizer', 'You started organizing skills!');
+                }
+            });
+
+            badge.addEventListener('dragend', function() {
+                this.classList.remove('dragging');
+            });
+        });
+
+        dropzones.forEach(zone => {
+            zone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('drag-over');
+            });
+
+            zone.addEventListener('dragleave', function() {
+                this.classList.remove('drag-over');
+            });
+
+            zone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('drag-over');
+                if (draggedElement) {
+                    this.appendChild(draggedElement);
+                }
+            });
+        });
+
+        // Comparison Slider
+        const comparisonSlider = document.getElementById('comparisonSlider');
+        const comparisonAfter = document.getElementById('comparisonAfter');
+        const sliderHandle = document.getElementById('sliderHandle');
+        let isDragging = false;
+
+        function updateComparison(x) {
+            const rect = comparisonSlider.getBoundingClientRect();
+            const position = Math.max(0, Math.min(x - rect.left, rect.width));
+            const percentage = (position / rect.width) * 100;
+
+            comparisonAfter.style.clipPath = `inset(0 0 0 ${percentage}%)`;
+            sliderHandle.style.left = percentage + '%';
+        }
+
+        sliderHandle.addEventListener('mousedown', () => isDragging = true);
+        document.addEventListener('mouseup', () => isDragging = false);
+
+        comparisonSlider.addEventListener('mousemove', (e) => {
+            if (isDragging) updateComparison(e.clientX);
+        });
+
+        comparisonSlider.addEventListener('click', (e) => {
+            updateComparison(e.clientX);
+        });
+
+        // Interactive Timeline
+        const timelineMarkers = document.querySelectorAll('.timeline-marker');
+        const timelineSteps = document.querySelectorAll('.timeline-step');
+        const timelineProgress = document.getElementById('timelineProgress');
+        const timelineScrubber = document.getElementById('timelineScrubber');
+
+        function activateTimelineStep(stepIndex) {
+            timelineMarkers.forEach((marker, i) => {
+                marker.classList.toggle('active', i === stepIndex);
+            });
+
+            timelineSteps.forEach((step, i) => {
+                step.classList.toggle('active', i === stepIndex);
+            });
+
+            const percentage = (stepIndex / (timelineMarkers.length - 1)) * 100;
+            timelineProgress.style.width = percentage + '%';
+        }
+
+        timelineMarkers.forEach((marker, index) => {
+            marker.addEventListener('click', () => {
+                activateTimelineStep(index);
+            });
+        });
+
+        timelineScrubber.addEventListener('click', (e) => {
+            const rect = timelineScrubber.getBoundingClientRect();
+            const position = e.clientX - rect.left;
+            const percentage = position / rect.width;
+            const stepIndex = Math.round(percentage * (timelineMarkers.length - 1));
+            activateTimelineStep(stepIndex);
+        });
+
+        // Animated Stats Counter
+        const statCards = document.querySelectorAll('.stat-card');
+        let statsAnimated = false;
+
+        function animateStats() {
+            if (statsAnimated) return;
+            statsAnimated = true;
+
+            statCards.forEach(card => {
+                const numberEl = card.querySelector('.stat-number');
+                const target = parseInt(numberEl.dataset.target);
+                const duration = 2000;
+                const steps = 60;
+                const increment = target / steps;
+                let current = 0;
+                let step = 0;
+
+                const timer = setInterval(() => {
+                    step++;
+                    current += increment;
+
+                    if (step >= steps) {
+                        numberEl.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        numberEl.textContent = Math.floor(current);
+                    }
+                }, duration / steps);
+            });
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelector('#stats').addEventListener('mouseenter', animateStats, { once: true });
+
+        if (document.querySelector('.animated-stats')) {
+            statsObserver.observe(document.querySelector('.animated-stats'));
+        }
+
+        // Chat Messages
+        const chatMessages = [
+            { type: 'user', text: 'What makes you different from other marketers?' },
+            { type: 'assistant', text: 'Most marketers either strategize or execute. I do both. I can identify a market opportunity, craft the positioning, write the copy, and build the landing page—all in the same day.' },
+            { type: 'user', text: 'Can you give an example?' },
+            { type: 'assistant', text: 'Sure. I noticed sustainable products have a perception problem—people see "eco" as a sacrifice. So I built an entire campaign reframing eco as premium quality. Full landing page, messaging framework, everything. It\'s live on this portfolio.' },
+            { type: 'user', text: 'How fast can you move?' },
+            { type: 'assistant', text: 'This entire interactive portfolio? Built in one day. Particle systems, drag-and-drop games, 3D cards, achievement tracking. I prototype fast because speed is competitive advantage.' }
+        ];
+
+        const chatContainer = document.getElementById('chatContainer');
+        let chatIndex = 0;
+
+        function addChatMessage() {
+            if (chatIndex >= chatMessages.length) return;
+
+            const message = chatMessages[chatIndex];
+            const messageEl = document.createElement('div');
+            messageEl.className = `chat-message ${message.type}`;
+            messageEl.style.animationDelay = `${chatIndex * 0.3}s`;
+
+            if (message.type === 'assistant') {
+                messageEl.innerHTML = `
+                    <span class="chat-avatar">AI</span>
+                    <div class="chat-bubble">${message.text}</div>
+                `;
+            } else {
+                messageEl.innerHTML = `
+                    <div class="chat-bubble">${message.text}</div>
+                    <span class="chat-avatar">U</span>
+                `;
+            }
+
+            chatContainer.appendChild(messageEl);
+            chatIndex++;
+
+            if (chatIndex < chatMessages.length) {
+                setTimeout(addChatMessage, 1500);
+            }
+        }
+
+        const chatObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    addChatMessage();
+                    chatObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        if (chatContainer) {
+            chatObserver.observe(chatContainer);
+        }
+
+        // Konami Code Easter Egg
+        const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+        let konamiIndex = 0;
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === konamiCode[konamiIndex]) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    unlockAchievement('konamiCode', 'Secret Master', 'You found the Konami code!');
+                    document.getElementById('easterEggModal').classList.add('show');
+                    konamiIndex = 0;
+                }
+            } else {
+                konamiIndex = 0;
+            }
+        });
+
+        function closeModal() {
+            document.getElementById('easterEggModal').classList.remove('show');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Random particles attracted to mouse
+        document.addEventListener('mousemove', (e) => {
+            const mouseParticle = {
+                x: e.clientX,
+                y: e.clientY
+            };
+
+            particles.forEach(particle => {
+                const dx = mouseParticle.x - particle.x;
+                const dy = mouseParticle.y - particle.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 100) {
+                    particle.vx += dx * 0.00005;
+                    particle.vy += dy * 0.00005;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
