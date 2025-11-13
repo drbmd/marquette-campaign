@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketing Strategist & Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .value-props {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .case-study {
+            background: #f8f9fa;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .case-study-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .case-study-header h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-header .tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .case-study-content {
+            padding: 3rem;
+            background: white;
+        }
+
+        .case-study-section {
+            margin-bottom: 3rem;
+        }
+
+        .case-study-section h4 {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .case-study-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .case-study-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .case-study-section li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .case-study-cta {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: #667eea;
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .skill-list li:last-child {
+            border-bottom: none;
+        }
+
+        .skill-bar {
+            width: 60px;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-bar-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            margin-top: 5rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .contact-options {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .process-timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 50px 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            align-items: center;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:first-child {
+            order: 3;
+        }
+
+        .timeline-content {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .timeline-content h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-dot {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .timeline-item {
+                grid-template-columns: 50px 1fr;
+                gap: 1rem;
+            }
+
+            .timeline-item .timeline-content:first-child {
+                display: none;
+            }
+
+            .timeline-item:nth-child(even) .timeline-content:first-child {
+                order: initial;
+            }
+        }
+
+        .interactive-demo {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .interactive-demo h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#work">My Work</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>I Find Opportunities<br>Others Miss</h1>
+            <p class="subtitle">Marketing Strategist • Content Creator • Developer</p>
+            <p class="description">
+                I don't just execute campaigns—I identify untapped markets, reframe narratives,
+                and build the tools to bring ideas to life. From concept to code.
+            </p>
+            <div class="hero-buttons">
+                <a href="#work" class="btn btn-primary">See My Work</a>
+                <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="value" class="section">
+        <h2 class="section-title">What I Bring</h2>
+        <p class="section-subtitle">Strategic thinking meets hands-on execution</p>
+
+        <div class="value-props">
+            <div class="value-card">
+                <div class="icon">🎯</div>
+                <h3>Market Intelligence</h3>
+                <p>I spot underserved niches and reframe existing markets with fresh angles that cut through noise.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon">💡</div>
+                <h3>Concept Development</h3>
+                <p>From market insight to compelling narrative—I craft messaging that resonates and converts.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon">⚡</div>
+                <h3>Rapid Prototyping</h3>
+                <p>I don't just pitch ideas—I build them. Functional prototypes, landing pages, full campaigns.</p>
+            </div>
+            <div class="value-card">
+                <div class="icon">📊</div>
+                <h3>Data-Driven</h3>
+                <p>Every decision backed by research, every claim supported by evidence, every design tested.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="section">
+        <h2 class="section-title">Featured Work</h2>
+        <p class="section-subtitle">Strategic campaigns from concept to execution</p>
+
+        <div class="case-study">
+            <div class="case-study-header">
+                <h3>"Quality First" Campaign</h3>
+                <p style="margin-bottom: 1rem;">Reframing sustainable products as quality choices</p>
+                <span class="tag">Market Research</span>
+                <span class="tag">Content Strategy</span>
+                <span class="tag">Web Development</span>
+                <span class="tag">UX Design</span>
+            </div>
+
+            <div class="case-study-content">
+                <div class="case-study-section">
+                    <h4>🎯 The Challenge</h4>
+                    <p>Sustainable products face a perception problem: consumers see "eco" as a sacrifice—higher prices for the sake of the environment, often with lower quality or performance.</p>
+                </div>
+
+                <div class="case-study-section">
+                    <h4>💡 The Insight</h4>
+                    <p>Most "eco" marketing focuses on environmental guilt or virtue signaling. But the truth is compelling: sustainable products are objectively better quality. They last longer, use superior materials, and deliver better value over time.</p>
+                    <p><strong>The untapped opportunity:</strong> Reframe sustainability as a quality decision, not an environmental one.</p>
+                </div>
+
+                <div class="case-study-section">
+                    <h4>🛠️ The Execution</h4>
+                    <p>I developed a complete marketing campaign from scratch:</p>
+                    <ul>
+                        <li>Market research identifying the quality-sustainability gap</li>
+                        <li>Messaging framework: "Eco isn't a compromise"</li>
+                        <li>Content strategy with 6 core truth pillars</li>
+                        <li>Full landing page design and development</li>
+                        <li>Interactive elements and animations</li>
+                        <li>Mobile-responsive implementation</li>
+                    </ul>
+                </div>
+
+                <div class="metrics">
+                    <div class="metric">
+                        <div class="metric-value">6</div>
+                        <div class="metric-label">Core value propositions</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">490</div>
+                        <div class="metric-label">Lines of code</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">1 Day</div>
+                        <div class="metric-label">Concept to launch</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Custom built</div>
+                    </div>
+                </div>
+
+                <div class="case-study-section">
+                    <h4>🎨 Design Philosophy</h4>
+                    <p>The design deliberately avoids "eco" clichés (earth tones, leaves, recycling symbols). Instead, it uses modern gradients, clean typography, and professional aesthetics to position sustainable products as premium quality choices.</p>
+                </div>
+
+                <div class="case-study-section">
+                    <h4>📈 Key Features</h4>
+                    <ul>
+                        <li>Hero section that immediately challenges assumptions</li>
+                        <li>Side-by-side comparison: "Fast & Cheap" vs "Quality & Sustainable"</li>
+                        <li>Real product examples with specific quality benefits</li>
+                        <li>Data-driven statistics section for credibility</li>
+                        <li>Smooth scroll animations and interactive hover effects</li>
+                        <li>Clear call-to-action focused on empowerment, not guilt</li>
+                    </ul>
+                </div>
+
+                <div class="interactive-demo">
+                    <h3>See It In Action</h3>
+                    <p>Experience the full campaign live</p>
+                    <div class="demo-buttons">
+                        <a href="quality-first.html" target="_blank" class="btn btn-primary">View Live Campaign</a>
+                        <a href="#contact" class="btn btn-secondary">Discuss This Project</a>
+                    </div>
+                </div>
+
+                <div class="case-study-section">
+                    <h4>💼 Business Impact</h4>
+                    <p>This approach works because it speaks to what consumers actually care about—quality, value, and performance—while making sustainability the smart choice rather than the virtuous one. It transforms eco products from a niche "feel-good" purchase into a mainstream quality decision.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <h2 class="section-title">Skills & Capabilities</h2>
+        <p class="section-subtitle">Full-stack marketing: from strategy to execution</p>
+
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3>Marketing Strategy</h3>
+                <ul class="skill-list">
+                    <li>
+                        <span>Market Research & Analysis</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 95%"></div></div>
+                    </li>
+                    <li>
+                        <span>Positioning & Messaging</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 100%"></div></div>
+                    </li>
+                    <li>
+                        <span>Content Strategy</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%"></div></div>
+                    </li>
+                    <li>
+                        <span>Campaign Development</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 95%"></div></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Creative Development</h3>
+                <ul class="skill-list">
+                    <li>
+                        <span>Copywriting</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 100%"></div></div>
+                    </li>
+                    <li>
+                        <span>UX/UI Design</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%"></div></div>
+                    </li>
+                    <li>
+                        <span>Brand Narrative</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 95%"></div></div>
+                    </li>
+                    <li>
+                        <span>Visual Design</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 80%"></div></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3>Technical Execution</h3>
+                <ul class="skill-list">
+                    <li>
+                        <span>HTML/CSS/JavaScript</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 90%"></div></div>
+                    </li>
+                    <li>
+                        <span>Responsive Design</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 95%"></div></div>
+                    </li>
+                    <li>
+                        <span>Web Animation</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 85%"></div></div>
+                    </li>
+                    <li>
+                        <span>Rapid Prototyping</span>
+                        <div class="skill-bar"><div class="skill-bar-fill" style="width: 100%"></div></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section">
+        <h2 class="section-title">My Process</h2>
+        <p class="section-subtitle">How I turn insights into impact</p>
+
+        <div class="process-timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Research</h4>
+                    <p>I start by understanding the market, audience, and competition. What's missing? What's misunderstood?</p>
+                </div>
+                <div class="timeline-dot">1</div>
+                <div class="timeline-content"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content"></div>
+                <div class="timeline-dot">2</div>
+                <div class="timeline-content">
+                    <h4>Insight</h4>
+                    <p>Find the angle no one else is using. The truth that's hiding in plain sight.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Strategy</h4>
+                    <p>Develop messaging, positioning, and content strategy that turns insight into action.</p>
+                </div>
+                <div class="timeline-dot">3</div>
+                <div class="timeline-content"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content"></div>
+                <div class="timeline-dot">4</div>
+                <div class="timeline-content">
+                    <h4>Build</h4>
+                    <p>Create the actual assets—landing pages, campaigns, prototypes. Make it real.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h4>Iterate</h4>
+                    <p>Test, refine, optimize. Every element should earn its place.</p>
+                </div>
+                <div class="timeline-dot">5</div>
+                <div class="timeline-content"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+        <h2>Let's Build Something</h2>
+        <p>Looking for someone who can think strategically and execute tactically?</p>
+        <p>I'm open to full-time roles, consulting projects, and contract work.</p>
+
+        <div class="contact-options">
+            <div class="contact-card">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📧</div>
+                <div>Email Me</div>
+                <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">your.email@example.com</div>
+            </div>
+            <div class="contact-card">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">💼</div>
+                <div>LinkedIn</div>
+                <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">/in/yourprofile</div>
+            </div>
+            <div class="contact-card">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🐙</div>
+                <div>GitHub</div>
+                <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">@yourusername</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.2);">
+            <p style="font-size: 1rem; opacity: 0.8;">
+                Based in [Your Location] • Available for remote work • Open to relocation
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.value-card, .skill-category, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Active nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const scrollY = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 100;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    document.querySelectorAll('nav a').forEach(link => {
+                        link.style.color = '#2c3e50';
+                    });
+                    const activeLink = document.querySelector(`nav a[href="#${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.style.color = '#667eea';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
