@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality First - Why Eco Means Better</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero .tagline {
+            font-size: 1.8rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .truth-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .truth-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .truth-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .truth-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .truth-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .truth-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .comparison-section {
+            background: #f8f9fa;
+            padding: 5rem 2rem;
+        }
+
+        .comparison-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-box {
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .comparison-box.fast {
+            background: #ffe5e5;
+            border: 2px solid #ff6b6b;
+        }
+
+        .comparison-box.quality {
+            background: #e5f4e5;
+            border: 2px solid #51cf66;
+        }
+
+        .comparison-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .comparison-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-box li {
+            padding: 0.75rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .comparison-box li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+
+        .comparison-box.fast li:before {
+            color: #ff6b6b;
+        }
+
+        .comparison-box.quality li:before {
+            color: #51cf66;
+        }
+
+        .examples-section {
+            padding: 5rem 2rem;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .example-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .example-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+        }
+
+        .example-card .emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .example-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: #2c3e50;
+        }
+
+        .example-card .quality-note {
+            color: #667eea;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .stats-section {
+            padding: 5rem 2rem;
+            background: #2c3e50;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #51cf66;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.3rem;
+            }
+
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Eco Isn't a Compromise</h1>
+            <p class="subtitle">Stop thinking "green" means sacrifice</p>
+            <div class="tagline">
+                Sustainable products aren't just better for the planet—<br>
+                <strong>they're better quality, period.</strong>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>The Truth They Don't Tell You</h2>
+        <div class="truth-grid">
+            <div class="truth-card">
+                <div class="icon">🏗️</div>
+                <h3>Built to Last</h3>
+                <p>Sustainable brands can't afford the "throwaway" model. They design for durability because their reputation depends on it. Your eco purchase will outlive 3-4 conventional alternatives.</p>
+            </div>
+            <div class="truth-card">
+                <div class="icon">🧵</div>
+                <h3>Better Materials</h3>
+                <p>Organic cotton is softer. Solid wood furniture is sturdier. Natural materials aren't just eco-friendly—they perform better and age beautifully.</p>
+            </div>
+            <div class="truth-card">
+                <div class="icon">🔬</div>
+                <h3>No Toxic Shortcuts</h3>
+                <p>Cheap products use chemicals to cut costs: formaldehyde in furniture, lead in paint, plasticizers in toys. Eco certifications mean safer products for your family.</p>
+            </div>
+            <div class="truth-card">
+                <div class="icon">⚙️</div>
+                <h3>Repairable Design</h3>
+                <p>Sustainable products are designed to be fixed, not tossed. Modular construction, available spare parts, clear documentation—quality that respects your investment.</p>
+            </div>
+            <div class="truth-card">
+                <div class="icon">🎯</div>
+                <h3>Thoughtful Engineering</h3>
+                <p>Mass production optimizes for cheap. Sustainable production optimizes for performance. Every material choice serves a purpose beyond just cost-cutting.</p>
+            </div>
+            <div class="truth-card">
+                <div class="icon">💰</div>
+                <h3>True Cost Savings</h3>
+                <p>$100 boots that last 10 years beat $30 boots every year. Quality eco products have lower total cost of ownership—you just pay upfront instead of repeatedly.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="comparison-section">
+        <div class="comparison-container">
+            <h2>Two Philosophies</h2>
+            <div class="comparison">
+                <div class="comparison-box fast">
+                    <h3>Fast & Cheap</h3>
+                    <ul>
+                        <li>Designed for 1-2 years max</li>
+                        <li>Synthetic materials that degrade</li>
+                        <li>Glued together, impossible to repair</li>
+                        <li>Off-gassing chemicals</li>
+                        <li>Lower upfront cost</li>
+                        <li>Constant replacement cycle</li>
+                    </ul>
+                </div>
+                <div class="comparison-box quality">
+                    <h3>Quality & Sustainable</h3>
+                    <ul>
+                        <li>Designed for 10+ years</li>
+                        <li>Natural materials that age well</li>
+                        <li>Repairable and upgradeable</li>
+                        <li>Non-toxic certifications</li>
+                        <li>Higher upfront, lower lifetime cost</li>
+                        <li>Buy once, use forever</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="examples-section">
+        <h2>Real-World Examples</h2>
+        <div class="examples-grid">
+            <div class="example-card">
+                <div class="emoji">👕</div>
+                <h4>Clothing</h4>
+                <p>Organic cotton is softer, more breathable, and holds color better than conventional fabric.</p>
+                <div class="quality-note">Lasts 3x longer</div>
+            </div>
+            <div class="example-card">
+                <div class="emoji">🪑</div>
+                <h4>Furniture</h4>
+                <p>Solid wood furniture can be refinished and lasts generations. Particle board falls apart in 5 years.</p>
+                <div class="quality-note">Heirloom quality</div>
+            </div>
+            <div class="example-card">
+                <div class="emoji">🥾</div>
+                <h4>Footwear</h4>
+                <p>Leather boots with replaceable soles outlast synthetic shoes by decades—and mold to your feet.</p>
+                <div class="quality-note">10+ years</div>
+            </div>
+            <div class="example-card">
+                <div class="emoji">🍳</div>
+                <h4>Cookware</h4>
+                <p>Cast iron and stainless steel cook better, last forever. Teflon scratches and becomes toxic.</p>
+                <div class="quality-note">Lifetime investment</div>
+            </div>
+            <div class="example-card">
+                <div class="emoji">🏠</div>
+                <h4>Home Goods</h4>
+                <p>Natural fiber rugs, linens, and towels feel luxurious and improve with age. Synthetics pill and degrade.</p>
+                <div class="quality-note">Superior feel</div>
+            </div>
+            <div class="example-card">
+                <div class="emoji">🔋</div>
+                <h4>Electronics</h4>
+                <p>Repairable devices with modular parts last longer and perform better than sealed "disposable" tech.</p>
+                <div class="quality-note">Future-proof</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <h2 style="color: white;">The Numbers Don't Lie</h2>
+        <div class="stats-grid">
+            <div class="stat">
+                <div class="stat-number">5x</div>
+                <div class="stat-label">Average lifespan increase for sustainable products</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">40%</div>
+                <div class="stat-label">Lower total cost of ownership over product lifetime</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">92%</div>
+                <div class="stat-label">Of sustainable product buyers report higher satisfaction</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">Zero</div>
+                <div class="stat-label">Toxic chemicals in certified eco products</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Stop Sacrificing. Start Winning.</h2>
+        <p>Buy better. Buy once. Buy sustainable.</p>
+        <a href="#" class="cta-button">Learn How to Choose Quality</a>
+    </section>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.truth-card, .example-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
