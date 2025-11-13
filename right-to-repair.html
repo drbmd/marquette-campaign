@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Own It. Actually. | The Right to Repair Movement</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="40">🔧</text></svg>') repeat;
+            opacity: 0.05;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100px); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero .subtitle {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero .problem {
+            font-size: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            margin-top: 3rem;
+            border-left: 6px solid white;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 4rem;
+        }
+
+        .ownership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .ownership-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .ownership-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .ownership-card .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .ownership-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .ownership-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .stats-banner {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 4rem 2rem;
+            color: white;
+            margin: 5rem 0;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #f093fb;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .broken-system {
+            background: #f8f9fa;
+            padding: 5rem 2rem;
+        }
+
+        .broken-system-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .problem-list {
+            list-style: none;
+            margin-top: 3rem;
+        }
+
+        .problem-list li {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 12px;
+            border-left: 6px solid #f5576c;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            font-size: 1.2rem;
+        }
+
+        .problem-list li strong {
+            color: #f5576c;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #667eea;
+        }
+
+        .solution-card .number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .solution-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .calculator-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 5rem 2rem;
+            color: white;
+        }
+
+        .calculator-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+        }
+
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1.1rem;
+            background: white;
+            color: #2c3e50;
+        }
+
+        .calc-result {
+            background: rgba(255,255,255,0.2);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .calc-result .big-number {
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 1rem 0;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .movement-section {
+            background: #2c3e50;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .movement-section h2 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .support-number {
+            font-size: 6rem;
+            font-weight: 900;
+            color: #f093fb;
+            margin: 2rem 0;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 4rem auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: calc(50% + 3rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 0;
+            padding-right: calc(50% + 3rem);
+            text-align: right;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: #f093fb;
+            border-radius: 50%;
+            border: 6px solid #2c3e50;
+        }
+
+        .timeline-content {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #f093fb;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #f5576c;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #f5576c;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .calculator-inputs {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                padding-left: 3rem;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: 0;
+                transform: translateX(-50%);
+            }
+        }
+
+        .sources {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-left: 4px solid #667eea;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Own It. Actually.</h1>
+            <p class="subtitle">You paid for it. You should be able to fix it.</p>
+            <div class="problem">
+                <strong>The Problem:</strong> You buy a $1,000 phone, but you don't really own it.
+                <br>When it breaks, the manufacturer decides if you can fix it, where you can fix it, and how much you'll pay.
+                <br><br>That's not ownership. That's a rental with extra steps.
+            </div>
+        </div>
+    </section>
+
+    <div class="stats-banner">
+        <div class="stats-container">
+            <div class="stat">
+                <span class="stat-number">84%</span>
+                <span class="stat-label">of Americans support Right to Repair laws</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">$40B</span>
+                <span class="stat-label">potential annual savings for US households</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">53%</span>
+                <span class="stat-label">replaced products sooner than wanted due to repair barriers</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">$142B</span>
+                <span class="stat-label">repair services market size (growing 6.8% annually)</span>
+            </div>
+        </div>
+        <div class="sources">
+            <strong>Sources:</strong> Consumer Reports 2024, Repair Association, Electronics Repair Market Analysis 2024
+        </div>
+    </div>
+
+    <section class="section">
+        <h2 class="section-title">What True Ownership Means</h2>
+        <p class="section-subtitle">Right to Repair isn't just about fixing things—it's about controlling what you own</p>
+
+        <div class="ownership-grid">
+            <div class="ownership-card">
+                <div class="icon">🔓</div>
+                <h3>Choice</h3>
+                <p>Choose who fixes your device: official service centers, local repair shops, or yourself. Your product, your decision.</p>
+            </div>
+
+            <div class="ownership-card">
+                <div class="icon">💰</div>
+                <h3>Savings</h3>
+                <p>Repair costs 50-75% less than replacement. Average household saves $330/year by repairing instead of replacing.</p>
+            </div>
+
+            <div class="ownership-card">
+                <div class="icon">♻️</div>
+                <h3>Longevity</h3>
+                <p>Products last longer when you can fix them. One repair can extend device life by 2-3 years.</p>
+            </div>
+
+            <div class="ownership-card">
+                <div class="icon">🛠️</div>
+                <h3>Access</h3>
+                <p>Manufacturers must provide parts, tools, and documentation. No more proprietary screws or locked diagnostics.</p>
+            </div>
+
+            <div class="ownership-card">
+                <div class="icon">🌍</div>
+                <h3>Sustainability</h3>
+                <p>61.3 million tonnes of e-waste annually. Repair reduces waste, carbon emissions, and resource extraction.</p>
+            </div>
+
+            <div class="ownership-card">
+                <div class="icon">💪</div>
+                <h3>Control</h3>
+                <p>Stop planned obsolescence. Manufacturers can't force upgrades by making devices impossible to repair.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="broken-system">
+        <div class="broken-system-content">
+            <h2 class="section-title">How We Got Here: The Broken System</h2>
+            <p class="section-subtitle">Manufacturers designed the system to maximize their profits, not your ownership rights</p>
+
+            <ul class="problem-list">
+                <li>
+                    <strong>Proprietary Parts & Tools</strong>
+                    Special screws, glued components, serialized parts that only work with specific devices. Designed to prevent independent repair.
+                </li>
+                <li>
+                    <strong>Withheld Documentation</strong>
+                    Repair manuals, schematics, and diagnostic software locked behind manufacturer-only access. Even professionals can't get them.
+                </li>
+                <li>
+                    <strong>Software Locks</strong>
+                    Devices detect "unauthorized" repairs and disable features. Replace your own iPhone screen? Camera stops working.
+                </li>
+                <li>
+                    <strong>Monopoly Pricing</strong>
+                    When only the manufacturer can repair, they charge whatever they want. Screen repair costs 70% of device price.
+                </li>
+                <li>
+                    <strong>Limited Lifespan Design</strong>
+                    Products designed to fail after warranty expires. Non-replaceable batteries, irreparable displays, sealed construction.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <section class="section">
+        <h2 class="section-title">The Right to Repair Solution</h2>
+        <p class="section-subtitle">Four pillars of actual ownership</p>
+
+        <div class="solution-grid">
+            <div class="solution-card">
+                <div class="number">01</div>
+                <h3>Access to Parts</h3>
+                <p>Manufacturers must sell replacement parts to consumers and independent repair shops at fair prices—same parts they use themselves.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="number">02</div>
+                <h3>Access to Tools</h3>
+                <p>Diagnostic software, calibration tools, and specialized equipment available to everyone. No more manufacturer-only access.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="number">03</div>
+                <h3>Access to Information</h3>
+                <p>Repair manuals, schematics, PCB layouts, and documentation published for all products. Knowledge shouldn't be gatekept.</p>
+            </div>
+
+            <div class="solution-card">
+                <div class="number">04</div>
+                <h3>No Software Locks</h3>
+                <p>Ban "parts pairing" that disables features after independent repair. Your device shouldn't punish you for fixing it yourself.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="calculator-section">
+        <div class="calculator-box">
+            <h2 style="margin-bottom: 1rem; font-size: 2.5rem;">💵 Repair vs. Replace Calculator</h2>
+            <p style="opacity: 0.9; margin-bottom: 2rem;">See how much you could save</p>
+
+            <div class="calculator-inputs">
+                <div class="input-group">
+                    <label>Device Type</label>
+                    <select id="deviceType" onchange="updateDefaults()">
+                        <option value="phone">Smartphone</option>
+                        <option value="laptop">Laptop</option>
+                        <option value="tablet">Tablet</option>
+                        <option value="appliance">Home Appliance</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Issue Type</label>
+                    <select id="issueType" onchange="updateDefaults()">
+                        <option value="screen">Broken Screen</option>
+                        <option value="battery">Battery Replacement</option>
+                        <option value="port">Charging Port</option>
+                        <option value="other">Other Component</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="calculator-inputs">
+                <div class="input-group">
+                    <label>Repair Cost ($)</label>
+                    <input type="number" id="repairCost" value="150" min="0" oninput="calculate()">
+                </div>
+
+                <div class="input-group">
+                    <label>Replacement Cost ($)</label>
+                    <input type="number" id="replaceCost" value="1000" min="0" oninput="calculate()">
+                </div>
+            </div>
+
+            <div class="calc-result" id="result">
+                <div style="font-size: 1.3rem; opacity: 0.9;">By Repairing Instead of Replacing, You Save:</div>
+                <div class="big-number" id="savings">$850</div>
+                <div style="font-size: 1.2rem; margin-top: 1rem;" id="percentage">85% less than replacement</div>
+                <div style="margin-top: 2rem; opacity: 0.8;">
+                    Plus: Extended device lifespan of <strong>2-3 years</strong>, reduced e-waste, and true ownership.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="movement-section">
+        <h2>The Movement is Winning</h2>
+        <div class="support-number">84%</div>
+        <p style="font-size: 1.5rem; margin-bottom: 3rem;">of Americans support Right to Repair legislation</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2024</div>
+                    <p>California Right to Repair Act goes into effect (July 1). Strongest law yet passed.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2024</div>
+                    <p>Oregon passes nation's strongest Right to Repair law for consumer electronics (March).</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2023-24</div>
+                    <p>Colorado, Minnesota, New York, Massachusetts enact comprehensive RTR legislation.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2026</div>
+                    <p>Colorado's law takes effect Jan 1, granting broadest repair rights in the nation.</p>
+                </div>
+            </div>
+        </div>
+
+        <p style="font-size: 1.3rem; max-width: 800px; margin: 3rem auto;">
+            This isn't a fringe movement. It's mainstream consumer protection with bipartisan support, backed by environmental groups, consumer advocates, and small businesses nationwide.
+        </p>
+    </div>
+
+    <section class="cta-section">
+        <h2>You Own It. Act Like It.</h2>
+        <p style="font-size: 1.5rem; margin: 1.5rem 0;">Join the movement for true ownership</p>
+        <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto 2rem;">
+            Support Right to Repair legislation in your state. Choose repair over replacement. Demand access to parts, tools, and information.
+        </p>
+
+        <div class="cta-buttons">
+            <a href="https://www.repair.org" class="btn btn-primary" target="_blank">Learn More at Repair.org</a>
+            <a href="https://www.ifixit.com" class="btn btn-secondary" target="_blank">Start Repairing with iFixit</a>
+        </div>
+
+        <div style="margin-top: 4rem; font-size: 1.1rem; opacity: 0.8;">
+            <p><strong>This campaign demonstrates:</strong> Market research, consumer behavior analysis, legislative trend tracking, and strategic positioning for a social movement.</p>
+            <p style="margin-top: 0.5rem;">Built as portfolio project showcasing ability to craft compelling narratives around complex policy issues.</p>
+        </div>
+    </section>
+
+    <script>
+        const defaults = {
+            phone: {
+                screen: { repair: 150, replace: 1000 },
+                battery: { repair: 70, replace: 1000 },
+                port: { repair: 90, replace: 1000 },
+                other: { repair: 200, replace: 1000 }
+            },
+            laptop: {
+                screen: { repair: 250, replace: 1500 },
+                battery: { repair: 120, replace: 1500 },
+                port: { repair: 100, replace: 1500 },
+                other: { repair: 300, replace: 1500 }
+            },
+            tablet: {
+                screen: { repair: 180, replace: 800 },
+                battery: { repair: 100, replace: 800 },
+                port: { repair: 80, replace: 800 },
+                other: { repair: 150, replace: 800 }
+            },
+            appliance: {
+                screen: { repair: 300, replace: 2000 },
+                battery: { repair: 200, replace: 2000 },
+                port: { repair: 150, replace: 2000 },
+                other: { repair: 400, replace: 2000 }
+            }
+        };
+
+        function updateDefaults() {
+            const device = document.getElementById('deviceType').value;
+            const issue = document.getElementById('issueType').value;
+            const data = defaults[device][issue];
+
+            document.getElementById('repairCost').value = data.repair;
+            document.getElementById('replaceCost').value = data.replace;
+
+            calculate();
+        }
+
+        function calculate() {
+            const repair = parseFloat(document.getElementById('repairCost').value);
+            const replace = parseFloat(document.getElementById('replaceCost').value);
+
+            const savings = replace - repair;
+            const percentage = ((savings / replace) * 100).toFixed(0);
+
+            document.getElementById('savings').textContent = '$' + savings.toFixed(0);
+            document.getElementById('percentage').textContent = percentage + '% less than replacement';
+        }
+
+        calculate();
+    </script>
+</body>
+</html>
