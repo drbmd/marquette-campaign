@@ -8,13 +8,15 @@ Built to prove I can identify market opportunities, develop strategic positionin
 
 ## 🎯 What's Here
 
-This repository contains **3 complete marketing campaigns** plus **supporting materials** for job search success:
+This repository contains **5 complete marketing campaigns** plus **supporting materials** for job search success:
 
 ### **Complete Marketing Campaigns:**
 
 1. **Quality First** - Sustainable products repositioned as premium quality investments
 2. **Right to Repair** - Consumer ownership rights campaign backed by legislative trends
 3. **Interactive Portfolio** - Game-like experience demonstrating technical execution
+4. **The $26B Market** - Neurodivergent-friendly services as competitive advantage
+5. **Independence Technology** - Aging tech repositioned from elder care to autonomy preservation
 
 ### **Supporting Materials:**
 
@@ -34,6 +36,8 @@ marquette-campaign/
 ├── quality-first.html                   # Campaign 1: Sustainable = Quality
 ├── right-to-repair.html                 # Campaign 2: True Ownership
 ├── interactive-portfolio.html           # Campaign 3: Technical showcase
+├── neurodivergent-market.html           # Campaign 4: $26B Untapped Market
+├── independence-tech.html               # Campaign 5: Autonomy Preservation
 ├── data-visualization.html              # Interactive research explorer
 ├── portfolio.html                       # Alternative portfolio presentation
 ├── research-summary.md                  # Comprehensive research documentation
@@ -130,6 +134,49 @@ marquette-campaign/
 
 ---
 
+### **The $26B Market (Neurodivergent-Friendly)**
+
+**Skills Shown:**
+- Underserved market identification (15-20% of population)
+- Accessibility as business case (not charity)
+- Service design (sensory-friendly accommodations)
+- Market sizing ($26.66B by 2035)
+- ROI analysis (£700M lost annually by UK supermarkets)
+- Competitive advantage positioning
+
+**Key Insights:**
+- 64% of autistic people avoid traditional stores → massive untapped market
+- Minimal-cost changes (quiet hours, lighting adjustments) yield significant returns
+- Only 48% aware of sensory-friendly options → education opportunity
+- Reframe accessibility from compliance to revenue opportunity
+- Market growth outpacing mainstream retail
+
+**Files:** `neurodivergent-market.html`
+
+---
+
+### **Independence Technology (Elder Tech Repositioning)**
+
+**Skills Shown:**
+- Demographic trend analysis (73M Americans 65+ by 2030)
+- Stigma reduction positioning (elder care → independence)
+- Healthcare economics ($1,591/month savings vs nursing homes)
+- Barrier identification (not tech literacy, but positioning)
+- Market repositioning (89% already own smartphones)
+- Strategic reframing (decline → autonomy)
+
+**Key Insights:**
+- Tech adoption isn't the barrier—89% of 50+ adults own smartphones
+- "Elder care technology" signals decline → resistance
+- "Independence technology" signals empowerment → adoption
+- Aging in place saves $1,591/month vs nursing homes
+- Remote monitoring saves $425/month in healthcare costs
+- Baby Boomers entering market with high tech literacy and financial resources
+
+**Files:** `independence-tech.html`
+
+---
+
 ## 📊 Research Highlights
 
 **Total Sources Analyzed:** 50+
@@ -149,6 +196,11 @@ marquette-campaign/
 - 84% support right to repair legislation
 - $40B annual savings potential from repair vs. replace
 - 23.8% market share for sustainable products (2024)
+- 64% of autistic people avoid traditional stores (£700M lost annually in UK)
+- $26.66B neurodivergent market by 2035
+- 89% of adults 50+ own smartphones (elder tech adoption ready)
+- $1,591/month savings: aging in place vs. nursing home
+- $25B independence technology market by 2035
 
 **See:** `research-summary.md` for complete documentation and citations
 
