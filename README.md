@@ -18,13 +18,16 @@ This repository contains **5 complete marketing campaigns** plus **supporting ma
 4. **The $26B Market** - Neurodivergent-friendly services as competitive advantage
 5. **Independence Technology** - Aging tech repositioned from elder care to autonomy preservation
 
-### **Supporting Materials:**
+### **Job Search Toolkit:**
 
-- **Data Visualization** - Interactive research explorer with charts, calculators, and filtering
-- **Research Summary** - 50+ academic and industry sources analyzed and synthesized
-- **Email Sequence** - 6-email nurture campaign with engagement tactics
-- **Interview Prep Guide** - STAR stories, question frameworks, preparation checklists
-- **Portfolio Hub** - Central index page showcasing all work
+- **Resume Optimization Guide** - ATS optimization, portfolio integration, role-specific customization
+- **Cover Letter Templates** - 6 templates (brand, content, product, growth, manager, startup)
+- **LinkedIn Optimization Guide** - Profile optimization, content strategy, networking tactics
+- **Interview Prep Guide** - 20 STAR stories, question frameworks, preparation checklists
+- **Email Sequence** - 6-email nurture campaign demonstrating content strategy
+- **Data Visualization** - Interactive research explorer with charts and calculators
+- **Research Summary** - 50+ academic and industry sources documented
+- **Portfolio Hub** - Central index page showcasing all campaigns
 
 ---
 
@@ -33,17 +36,27 @@ This repository contains **5 complete marketing campaigns** plus **supporting ma
 ```
 marquette-campaign/
 ├── index.html                          # Portfolio hub (START HERE)
-├── quality-first.html                   # Campaign 1: Sustainable = Quality
-├── right-to-repair.html                 # Campaign 2: True Ownership
-├── interactive-portfolio.html           # Campaign 3: Technical showcase
-├── neurodivergent-market.html           # Campaign 4: $26B Untapped Market
-├── independence-tech.html               # Campaign 5: Autonomy Preservation
-├── data-visualization.html              # Interactive research explorer
-├── portfolio.html                       # Alternative portfolio presentation
-├── research-summary.md                  # Comprehensive research documentation
-├── email-sequence-quality-first.md      # 6-email nurture sequence
-├── interview-prep-guide.md              # Complete interview preparation
-└── README.md                            # This file
+│
+├── Campaigns/
+│   ├── quality-first.html              # Campaign 1: Sustainable = Quality
+│   ├── right-to-repair.html            # Campaign 2: True Ownership
+│   ├── interactive-portfolio.html       # Campaign 3: Technical showcase
+│   ├── neurodivergent-market.html      # Campaign 4: $26B Untapped Market
+│   └── independence-tech.html          # Campaign 5: Autonomy Preservation
+│
+├── Supporting Materials/
+│   ├── data-visualization.html          # Interactive research explorer
+│   ├── portfolio.html                   # Alternative portfolio format
+│   ├── research-summary.md             # 50+ sources documented
+│   └── email-sequence-quality-first.md # 6-email nurture campaign
+│
+├── Job Search Toolkit/
+│   ├── resume-optimization-guide.md    # ATS optimization, templates
+│   ├── cover-letter-templates.md       # 6 role-specific templates
+│   ├── linkedin-optimization-guide.md  # Profile, content, networking
+│   └── interview-prep-guide.md         # 20 STAR stories, frameworks
+│
+└── README.md                           # This file
 ```
 
 ---
@@ -53,22 +66,28 @@ marquette-campaign/
 **To view the portfolio:**
 
 1. Open `index.html` in your browser
-2. Explore the three featured campaigns
-3. Click through to individual projects and research
+2. Explore all five featured campaigns
+3. Click through to individual projects, data visualizations, and research
+
+**To launch your job search:**
+
+1. **Resume:** Follow `resume-optimization-guide.md` to create ATS-friendly resume with portfolio integration
+2. **Cover Letters:** Use templates in `cover-letter-templates.md` for each application (6 role types)
+3. **LinkedIn:** Optimize profile using `linkedin-optimization-guide.md` (complete section-by-section guide)
+4. **Portfolio:** Host `index.html` on GitHub Pages, Netlify, or Vercel and link from all materials
+5. **Applications:** Start applying with complete toolkit (resume + cover letter + portfolio + LinkedIn)
 
 **To prepare for interviews:**
 
-1. Read `interview-prep-guide.md` cover to cover
-2. Customize STAR stories with your own details
-3. Practice the 30-second pitches
+1. Read `interview-prep-guide.md` cover to cover (20 STAR stories pre-prepared)
+2. Customize stories based on your specific portfolio work
+3. Practice 30-second pitches (3 versions included)
 4. Research target companies using provided framework
+5. Review day-before and day-of checklists
 
-**To use for job applications:**
+**Complete job search workflow:**
 
-1. Send link to `index.html` (host on GitHub Pages, Netlify, or Vercel)
-2. Customize `research-summary.md` to show research depth
-3. Reference specific projects in cover letters
-4. Use `interview-prep-guide.md` to prepare responses
+Resume → Cover Letter → LinkedIn → Applications → Interviews → Offers
 
 ---
 
