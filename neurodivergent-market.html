@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The $26B Market You're Ignoring | Neurodivergent-Friendly Business</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #ffffff;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.03) 10px,
+                rgba(255,255,255,0.03) 20px
+            );
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero .subtitle {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero .market-stat {
+            font-size: 6rem;
+            font-weight: 900;
+            margin: 2rem 0;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero .stat-label {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .stats-banner {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            padding: 4rem 2rem;
+            color: white;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #4facfe;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .problem-box {
+            background: #fff5f5;
+            border-left: 6px solid #ff6b6b;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .problem-box h3 {
+            color: #ff6b6b;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .opportunity-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(79, 172, 254, 0.3);
+        }
+
+        .opportunity-card .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .opportunity-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .opportunity-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .changes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .change-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-top: 4px solid #4facfe;
+        }
+
+        .change-card .step {
+            font-size: 3rem;
+            font-weight: 900;
+            color: #4facfe;
+            margin-bottom: 1rem;
+        }
+
+        .change-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .change-card .impact {
+            background: #e8f8ff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: #0077b6;
+        }
+
+        .roi-section {
+            background: #f8f9fa;
+            padding: 5rem 2rem;
+        }
+
+        .roi-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .roi-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .roi-box {
+            padding: 2rem;
+            border-radius: 12px;
+        }
+
+        .roi-box.before {
+            background: #ffe5e5;
+            border: 3px solid #ff6b6b;
+        }
+
+        .roi-box.after {
+            background: #e5f4e5;
+            border: 3px solid #51cf66;
+        }
+
+        .roi-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .roi-stat {
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 1rem 0;
+        }
+
+        .roi-box.before .roi-stat {
+            color: #ff6b6b;
+        }
+
+        .roi-box.after .roi-stat {
+            color: #51cf66;
+        }
+
+        .example-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 5rem 2rem;
+            color: white;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+
+        .example-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .example-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .example-card .brand {
+            color: #4facfe;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .checklist {
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .checklist-item {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            border-left: 4px solid #4facfe;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .checklist-item h4 {
+            color: #4facfe;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .cta-section {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #4facfe;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #4facfe;
+        }
+
+        .sources {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-left: 4px solid #4facfe;
+            margin-top: 2rem;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .market-stat {
+                font-size: 4rem;
+            }
+
+            .roi-comparison {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>The $26B Market<br>You're Ignoring</h1>
+            <p class="subtitle">Neurodivergent-friendly isn't charity—it's competitive advantage</p>
+            <div class="market-stat">15-20%</div>
+            <p class="stat-label">of the global population is neurodivergent<br>That's your customer. Are you serving them?</p>
+        </div>
+    </section>
+
+    <div class="stats-banner">
+        <div class="stats-container">
+            <div class="stat">
+                <span class="stat-number">$26.66B</span>
+                <span class="stat-label">Sensory-friendly products market by 2035</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">64%</span>
+                <span class="stat-label">of autistic people avoid traditional stores</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">£700M</span>
+                <span class="stat-label">lost annually by UK supermarkets alone</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">48%</span>
+                <span class="stat-label">unaware sensory-friendly options even exist</span>
+            </div>
+        </div>
+        <div class="sources">
+            <strong>Sources:</strong> Business Research Insights 2024 (Fidget Toys Market), Grand View Research (ADHD/Autism Clinics), ESM Magazine UK Survey, Sensory Friendly Solutions
+        </div>
+    </div>
+
+    <section class="section">
+        <h2 class="section-title">The Problem</h2>
+        <p class="section-subtitle">Most businesses are designed for neurotypical customers—and losing massive revenue because of it</p>
+
+        <div class="problem-box">
+            <h3>64% of autistic people avoid stores entirely</h3>
+            <p style="font-size: 1.2rem; line-height: 1.8;">
+                Bright lights. Loud music. Overwhelming sensory input. For neurodivergent customers (autism, ADHD, sensory processing disorders), most retail environments are physically painful.
+                <br><br>
+                So they shop online. Or they don't shop at all. And businesses lose billions.
+            </p>
+        </div>
+
+        <div style="background: #e8f8ff; padding: 2rem; border-radius: 12px; margin-top: 2rem;">
+            <h3 style="color: #0077b6; margin-bottom: 1rem;">The Revenue Impact</h3>
+            <ul style="font-size: 1.1rem; line-height: 2; padding-left: 2rem;">
+                <li><strong>UK supermarkets:</strong> £13.5M lost weekly = £700M+ annually</li>
+                <li><strong>US market:</strong> $65.95B ADHD/autism services market (2023)</li>
+                <li><strong>Sensory toys alone:</strong> $2B to $5B by 2033 (11% CAGR)</li>
+                <li><strong>Fidget toys:</strong> $8.28B to $26.66B by 2035</li>
+            </ul>
+            <p style="margin-top: 1.5rem; font-size: 1.2rem; font-weight: 600; color: #0077b6;">
+                This isn't a niche. This is 15-20% of your potential customers actively avoiding you.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">The Opportunity</h2>
+        <p class="section-subtitle">Small changes = massive market access</p>
+
+        <div class="opportunity-grid">
+            <div class="opportunity-card">
+                <div class="icon">🛍️</div>
+                <h3>Retail & Services</h3>
+                <p>Sensory-friendly hours, quiet spaces, predictable environments</p>
+                <div class="number">90%</div>
+                <p>of Gen Z want stores to prioritize sensory adjustments</p>
+            </div>
+
+            <div class="opportunity-card">
+                <div class="icon">✂️</div>
+                <h3>Personal Services</h3>
+                <p>Haircuts, dentistry, medical care designed for sensory needs</p>
+                <div class="number">16%</div>
+                <p>of children have sensory processing issues</p>
+            </div>
+
+            <div class="opportunity-card">
+                <div class="icon">🎭</div>
+                <h3>Entertainment</h3>
+                <p>Movies, concerts, events with sensory-friendly options</p>
+                <div class="number">$65.95B</div>
+                <p>ADHD/autism market in 2023 (US alone)</p>
+            </div>
+
+            <div class="opportunity-card">
+                <div class="icon">🏢</div>
+                <h3>Workplaces</h3>
+                <p>Sensory-considerate office design, flexible work options</p>
+                <div class="number">15-20%</div>
+                <p>of employees are neurodivergent</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="roi-section">
+        <div class="roi-container">
+            <h2 class="section-title" style="color: #2c3e50;">The ROI of Accessibility</h2>
+            <p class="section-subtitle" style="color: #666;">Compare: Standard retail vs. Sensory-friendly approach</p>
+
+            <div class="roi-comparison">
+                <div class="roi-box before">
+                    <h3>Standard Approach</h3>
+                    <div style="margin-top: 2rem;">
+                        <div class="roi-stat">64%</div>
+                        <p>of autistic customers avoid your store</p>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <div class="roi-stat">48%</div>
+                        <p>unaware you even have options</p>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <div class="roi-stat">£700M</div>
+                        <p>lost annually (UK supermarkets)</p>
+                    </div>
+                </div>
+
+                <div class="roi-box after">
+                    <h3>Sensory-Friendly</h3>
+                    <div style="margin-top: 2rem;">
+                        <div class="roi-stat">+15-20%</div>
+                        <p>market expansion (neurodivergent population)</p>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <div class="roi-stat">50%</div>
+                        <p>of ALL shoppers prefer quieter stores</p>
+                    </div>
+                    <div style="margin-top: 2rem;">
+                        <div class="roi-stat">Low Cost</div>
+                        <p>dim lights, lower music = zero CAPEX</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: white; border-radius: 12px;">
+                <h3 style="color: #4facfe; font-size: 2rem; margin-bottom: 1rem;">The Math</h3>
+                <p style="font-size: 1.3rem; line-height: 1.8;">
+                    <strong>Cost to implement:</strong> Minimal (adjust lighting, music, signage)
+                    <br>
+                    <strong>Market expansion:</strong> +15-20% potential customers
+                    <br>
+                    <strong>Additional benefit:</strong> 50% of neurotypical customers also prefer it
+                    <br><br>
+                    <span style="color: #51cf66; font-size: 1.5rem; font-weight: 700;">This isn't charity. It's smart business.</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <h2 class="section-title">What Sensory-Friendly Actually Means</h2>
+        <p class="section-subtitle">5 changes that make your business accessible (and profitable)</p>
+
+        <div class="changes-grid">
+            <div class="change-card">
+                <div class="step">01</div>
+                <h3>Predictable Environment</h3>
+                <p>Clear signage, consistent layout, no unexpected stimuli. Neurodivergent customers need to know what to expect.</p>
+                <div class="impact">Impact: Reduces anxiety, increases visit frequency</div>
+            </div>
+
+            <div class="change-card">
+                <div class="step">02</div>
+                <h3>Sensory Control</h3>
+                <p>Dim lights, lower music volume, minimal scents. Create "quiet hours" or permanent quiet zones.</p>
+                <div class="impact">Impact: 50% of ALL shoppers prefer quieter stores</div>
+            </div>
+
+            <div class="change-card">
+                <div class="step">03</div>
+                <h3>Communication Options</h3>
+                <p>Written menus, visual schedules, text-based ordering. Not everyone processes verbal info well under sensory load.</p>
+                <div class="impact">Impact: Serves deaf/hard-of-hearing community too</div>
+            </div>
+
+            <div class="change-card">
+                <div class="step">04</div>
+                <h3>Flexible Pacing</h3>
+                <p>No rush, clear time estimates, option to pause. Processing time varies—accommodate it.</p>
+                <div class="impact">Impact: Reduces stress, improves customer satisfaction</div>
+            </div>
+
+            <div class="change-card">
+                <div class="step">05</div>
+                <h3>Staff Training</h3>
+                <p>Educate team on neurodiversity, sensory needs, communication styles. Empathy scales.</p>
+                <div class="impact">Impact: Better service for ALL customers</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="example-section">
+        <h2 style="font-size: 3rem; margin-bottom: 2rem; text-align: center;">Who's Already Winning</h2>
+        <p style="text-align: center; font-size: 1.3rem; margin-bottom: 3rem; opacity: 0.9;">Major retailers capturing the sensory-friendly market</p>
+
+        <div class="example-grid">
+            <div class="example-card">
+                <div class="brand">Walmart</div>
+                <h4>Sensory-Friendly Hours</h4>
+                <p>8-10am daily at all US & Puerto Rico stores. Dimmed lights, no announcements, quieter checkout.</p>
+                <p style="margin-top: 1rem; font-style: italic;">"Overwhelmingly positive feedback" led to nationwide expansion.</p>
+            </div>
+
+            <div class="example-card">
+                <div class="brand">UK Supermarkets</div>
+                <h4>Quiet Hour Pioneers</h4>
+                <p>Asda, Lidl, Morrisons, Tesco all offer dedicated quiet shopping hours with sensory-reduced environments.</p>
+                <p style="margin-top: 1rem; font-style: italic;">Recovering portion of £700M annual lost revenue.</p>
+            </div>
+
+            <div class="example-card">
+                <div class="brand">AMC Theatres</div>
+                <h4>Sensory-Friendly Films</h4>
+                <p>Lights up, sound down, movement allowed. Monthly screenings nationwide.</p>
+                <p style="margin-top: 1rem; font-style: italic;">Serves autism community + young families (similar needs).</p>
+            </div>
+
+            <div class="example-card">
+                <div class="brand">Microsoft</div>
+                <h4>Neurodiversity Hiring</h4>
+                <p>Specialized recruitment program for autistic talent. Accommodating workspaces.</p>
+                <p style="margin-top: 1rem; font-style: italic;">Taps into high-skill workforce often overlooked.</p>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 12px;">
+            <p style="font-size: 1.3rem;">
+                <strong>The pattern:</strong> Low-cost changes → Massive market access → Competitive differentiation
+            </p>
+        </div>
+    </div>
+
+    <section class="section">
+        <h2 class="section-title">Implementation Checklist</h2>
+        <p class="section-subtitle">Start here: Quick wins for your business</p>
+
+        <div class="checklist">
+            <div class="checklist-item">
+                <h4>✓ Audit Your Environment</h4>
+                <p>Walk through your space. Note: lighting brightness, music volume, scent intensity, visual clutter, unpredictable sounds.</p>
+            </div>
+
+            <div class="checklist-item">
+                <h4>✓ Create Quiet Hours</h4>
+                <p>Test 2-hour windows with dimmed lights, no music, minimal announcements. Walmart does 8-10am—pick what works for you.</p>
+            </div>
+
+            <div class="checklist-item">
+                <h4>✓ Update Signage</h4>
+                <p>Clear, simple, visual. Show sensory-friendly hours prominently. Use symbols + text.</p>
+            </div>
+
+            <div class="checklist-item">
+                <h4>✓ Train Staff</h4>
+                <p>30-minute session on neurodiversity basics. Focus: patience, clear communication, no judgment.</p>
+            </div>
+
+            <div class="checklist-item">
+                <h4>✓ Add Communication Options</h4>
+                <p>Written menus, point-to-order, text-based inquiry. Reduces verbal processing load.</p>
+            </div>
+
+            <div class="checklist-item">
+                <h4>✓ Market It</h4>
+                <p>Only 48% know sensory-friendly options exist. Promote your accommodations. Reach autism/ADHD organizations, parent groups.</p>
+            </div>
+
+            <div class="checklist-item">
+                <h4>✓ Gather Feedback</h4>
+                <p>Anonymous surveys from neurodivergent customers. Iterate based on actual needs.</p>
+            </div>
+
+            <div class="checklist-item">
+                <h4>✓ Measure Results</h4>
+                <p>Track: new customer acquisition during quiet hours, customer satisfaction scores, repeat visit rates.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <h2>Your Competitors Are Already Moving</h2>
+        <p style="font-size: 1.5rem; margin: 1.5rem 0;">The neurodivergent market is $26B+ and growing. Will you capture it?</p>
+        <p style="font-size: 1.2rem; opacity: 0.9; max-width: 700px; margin: 0 auto 2rem;">
+            Sensory-friendly isn't a nice-to-have. It's a competitive advantage that 64% of your potential customers are actively seeking.
+        </p>
+
+        <div class="cta-buttons">
+            <a href="https://www.sensoryfriendly.net" class="btn btn-primary" target="_blank">Learn More: Sensory Friendly Solutions</a>
+            <a href="https://www.autism.org.uk" class="btn btn-secondary" target="_blank">Partner with Autism Organizations</a>
+        </div>
+
+        <div style="margin-top: 4rem; font-size: 1.1rem; opacity: 0.8;">
+            <p><strong>This campaign demonstrates:</strong> Market opportunity identification, underserved demographic analysis, ROI-focused positioning, and implementation frameworks for service businesses.</p>
+            <p style="margin-top: 0.5rem;">Built as portfolio project showcasing ability to identify and market to overlooked customer segments.</p>
+        </div>
+    </section>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.opportunity-card, .change-card, .example-card, .checklist-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
